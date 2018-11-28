@@ -1,0 +1,12 @@
+<mat-dialog-content>Fill in fields to add dead lead reason</mat-dialog-content>
+<div class="example-container">
+	<form #deadLeadReasonForm="ngForm">
+		<mat-form-field>
+			<input matInput placeholder="Label" id="label" [(ngModel)]="deadLeadReason.label" name="label">
+		</mat-form-field>
+	</form>
+</div>
+<mat-dialog-actions>
+	<button mat-button mat-dialog-close>Cancel</button>
+	<button mat-button [mat-dialog-close]="true" (click)="addDeadLeadReason()" type="submit" color="primary">Add</button>
+</mat-dialog-actions>

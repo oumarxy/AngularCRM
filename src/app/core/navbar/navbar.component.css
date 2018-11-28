@@ -1,0 +1,15 @@
+.blue a {
+	background-color:#e6e6e6;
+}
+
+nav {
+	background-color: white;
+}
+
+.navbar-text {
+	padding-right: 10px;
+}
+
+.dropdown-menu a {
+	background-color: transparent;
+}

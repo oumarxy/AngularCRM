@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>Delete selected item(s)?</h2>
+<mat-dialog-content>
+	<p>Are you sure? <b>This action cannot be undone!</b></p>
+	<mat-form-field class="example-full-width">
+		<textarea matInput placeholder="Deletion note" id="note" [(ngModel)]="note.data" name="note" required></textarea>
+		<mat-hint align="start"><strong>Required</strong></mat-hint>
+	</mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+	<button mat-button mat-dialog-close>No</button>
+	<!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+	<button mat-button [mat-dialog-close]="true" (click)="deleteCustomer()" type="submit" color="warn">Yes</button>
+</mat-dialog-actions>
+

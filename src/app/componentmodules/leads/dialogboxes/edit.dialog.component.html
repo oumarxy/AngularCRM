@@ -1,0 +1,324 @@
+<h2 mat-dialog-title>Edit fields and then click on save</h2>
+<mat-dialog-content>
+	<form #editLeadForm="ngForm">
+		<div class="col-12">
+			<mat-card class="card">
+				<mat-card-content class="content-detail">
+					<div><b>Estimated Policy Close Date:</b>
+						<mat-form-field>
+							<input matInput [value]="insuranceLead.estClosingDate | shortDate" [matDatepicker]="closingDatePicker" [(ngModel)]="insuranceLead.estClosingDate" id="estClosingDate" name="estClosingDate">
+							<mat-datepicker-toggle matSuffix [for]="closingDatePicker"></mat-datepicker-toggle>
+							<mat-datepicker #closingDatePicker></mat-datepicker>
+						</mat-form-field>
+					</div>
+					<div><b>Estimated Policy Value:</b>
+						<mat-form-field>
+							<input matInput id="estClosingValue" [value]="insuranceLead.estClosingValue" [(ngModel)]="insuranceLead.estClosingValue" name="estClosingValue">
+						</mat-form-field>
+					</div>
+					<div><b>Lead Status:</b>
+						<mat-form-field>
+							<mat-select id="leadStatusId" [(ngModel)]="insuranceLead.leadStatusId" name="leadStatusId">
+								<mat-option *ngFor="let leadStat of leadStatus" [value]="leadStat">{{ leadStat }}</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+					<div><b>Assigned User/Sales Agent:</b>
+						<mat-form-field>
+							<mat-select id="salesAgent" [value]="insuranceLead.userId" [(ngModel)]="insuranceLead.userId" name="salesAgent">
+								<mat-option *ngFor="let user of users" [value]="user">{{ user }}</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+						<div><b>Last Contact Date:</b>
+						<mat-form-field>
+							<input matInput [matDatepicker]="picker" [value]="insuranceLead.lastContactDate" [(ngModel)]="insuranceLead.lastContactDate" id="lastContactDate" name="lastContactDate">
+							<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+							<mat-datepicker #picker></mat-datepicker>
+						</mat-form-field>
+					</div>
+					<div><b>Lead Source:</b>
+						<mat-form-field>
+							<mat-select id="leadSourceId" [value]="insuranceLead.leadSourceId" [(ngModel)]="insuranceLead.leadSourceId" name="leadSourceId">
+								<mat-option *ngFor="let leadSource of leadSources" [value]="leadSource">{{ leadSource }}</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+					<div><b>Deleted?:</b>
+						<mat-form-field>
+							<mat-select id="deleted" [value]="insuranceLead.deleted" [(ngModel)]="insuranceLead.deleted" name="deleted">
+									<mat-option [value]=true>True</mat-option>
+									<mat-option [value]=false>False</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+				</mat-card-content>
+			</mat-card>
+			<mat-card class="card">
+				<mat-card-header class="card-header">
+					<mat-card-title><mat-icon>list_alt</mat-icon><span>Lead Details</span></mat-card-title>
+				</mat-card-header>
+				<mat-card-content class="content-detail">
+					<div><b>State:</b>
+						<mat-form-field>
+							<mat-select id="state" [value]="insuranceLead.stateId" [(ngModel)]="insuranceLead.stateId" name="state">
+								<mat-option *ngFor="let state of states" [value]="state">{{ state }}</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+					<div><b>County:</b>
+						<mat-form-field>
+							<input matInput id="countyName" [value]="insuranceLead.countyName" [(ngModel)]="insuranceLead.countyName" name="countyName">
+						</mat-form-field>
+					</div>
+					<div><b>ZIP Code:</b>
+							<mat-form-field>
+								<input matInput id="zipCode" [value]="insuranceLead.zipCode" [(ngModel)]="insuranceLead.zipCode" name="zipCode">
+							</mat-form-field>
+					</div>
+					<div><b>Referral:</b>
+						<mat-form-field>
+							<mat-select id="referralId" [value]="insuranceLead.referralId" [(ngModel)]="insuranceLead.referralId" name="referralId">
+								<mat-option *ngFor="let referral of referrals" [value]="referral">{{ referral }}</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+					<div><b>co-Applicant first name:</b>
+						<mat-form-field>
+							<input matInput id="coApplicantFirstName" [value]="insuranceLead.coApplicantFirstName" [(ngModel)]="insuranceLead.coApplicantFirstName" name="coApplicantFirstName">
+						</mat-form-field>	
+					</div>
+					<div><b>co-Applicant last name:</b>
+						<mat-form-field>
+							<input matInput id="coApplicantLastName" [value]="insuranceLead.coApplicantLastName" [(ngModel)]="insuranceLead.coApplicantLastName" name="coApplicantLastName">
+						</mat-form-field>
+					</div>
+					<div><b>co-Applicant DOB:</b>
+						<mat-form-field>
+							<input matInput [value]="insuranceLead.coApplicantDateOfBirth" [matDatepicker]="coApplicantDOB" id="coApplicantDateOfBirth" [(ngModel)]="insuranceLead.coApplicantDateOfBirth" name="coApplicantDateOfBirth">
+							<mat-datepicker-toggle matSuffix [for]="coApplicantDOB"></mat-datepicker-toggle>
+							<mat-datepicker #coApplicantDOB></mat-datepicker>
+						</mat-form-field>
+					</div>
+					<div><b>Purchase amount:</b>
+						<mat-form-field>
+							<input matInput id="purchaseAmount" [value]="insuranceLead.purchaseAmount" [(ngModel)]="insuranceLead.purchaseAmount" name="purchaseAmount">
+						</mat-form-field>
+					</div>
+					<div><b>Purchase date:</b>
+						<mat-form-field>
+							<input matInput [value]="insuranceLead.purchaseDate" [matDatepicker]="purchaseDate" id="purchaseDate" [(ngModel)]="insuranceLead.purchaseDate" name="purchaseDate">
+							<mat-datepicker-toggle matSuffix [for]="purchaseDate"></mat-datepicker-toggle>
+							<mat-datepicker #purchaseDate></mat-datepicker>
+						</mat-form-field>
+					</div>
+					<div><b>Home financed:</b>
+						<mat-form-field>
+							<mat-select id="homeFinanced" [value]="insuranceLead.homeFinanced" [(ngModel)]="insuranceLead.homeFinanced" name="homeFinanced">
+								<mat-option [value]=true>True</mat-option>
+								<mat-option [value]=false>False</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+					<div><b>Previous insurance company:</b>
+						<mat-form-field>
+							<input matInput id="prevInsuranceCompanyName" [value]="insuranceLead.prevInsuranceCompanyName" [(ngModel)]="insuranceLead.prevInsuranceCompanyName" name="prevInsuranceCompanyName">
+						</mat-form-field>
+					</div>
+					<div><b>Previous policy expiration date:</b>
+						<mat-form-field>
+							<input matInput [value]="insuranceLead.prevPolicyExpirationDate" [matDatepicker]="prevPolicyExpirationDate" id="prevPolicyExpirationDate" [(ngModel)]="insuranceLead.prevPolicyExpirationDate" name="prevPolicyExpirationDate">
+							<mat-datepicker-toggle matSuffix [for]="prevPolicyExpirationDate"></mat-datepicker-toggle>
+							<mat-datepicker #prevPolicyExpirationDate></mat-datepicker>
+						</mat-form-field>
+					</div>
+					<div><b>Any claims in last five years:</b>
+						<mat-form-field>
+							<mat-select id="anyClaimsPrevFiveYears" [value]="insuranceLead.anyClaimsPrevFiveYears" [(ngModel)]="insuranceLead.anyClaimsPrevFiveYears" name="anyClaimsPrevFiveYears">
+									<mat-option [value]=true>True</mat-option>
+									<mat-option [value]=false>False</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+					<div><b>Estimated policy start date:</b>
+						<mat-form-field>
+							<input matInput [matDatepicker]="picker2" [value]="insuranceLead.estPolicyStartDate" [(ngModel)]="insuranceLead.estPolicyStartDate" id="estPolicyStartDate" name="estPolicyStartDate">
+							<mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+							<mat-datepicker #picker2></mat-datepicker>
+						</mat-form-field>
+					</div>
+					<div><b>Estimated home value:</b>
+						<mat-form-field>
+							<input matInput id="estHomeValue" [value]="insuranceLead.estHomeValue" [(ngModel)]="insuranceLead.estHomeValue" name="estHomeValue">
+						</mat-form-field>
+					</div>
+					<div><b>Estimated value of home contents:</b>
+						<mat-form-field>
+							<input matInput id="estHomeContentsValue" [value]="insuranceLead.estHomeContentsValue" [(ngModel)]="insuranceLead.estHomeContentsValue" name="estHomeContentsValue">
+						</mat-form-field>
+					</div>
+					<div><b>Personal items insured:</b>
+						<mat-form-field>
+							<mat-select id="insurePersonalItems" [value]="insuranceLead.insurePersonalItems" [(ngModel)]="insuranceLead.insurePersonalItems" name="insurePersonalItems">
+								<mat-option [value]=true>True</mat-option>
+								<mat-option [value]=false>False</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+				</mat-card-content>
+			</mat-card>
+			<mat-card class="card">
+				<mat-card-header class="card-header">
+					<mat-card-title><mat-icon>home</mat-icon>Property Details</mat-card-title>
+				</mat-card-header>
+				<mat-card-content class="content-detail">
+					<div><b>Dimensions:</b>
+						<mat-form-field hintLabel="Unit Width (ft)">
+							<input matInput id="width" [value]="insuranceLead.width" [(ngModel)]="insuranceLead.width" name="width">
+						</mat-form-field>
+						<mat-form-field hintLabel="Unit Length (ft)">
+							<input matInput id="length" [value]="insuranceLead.length" [(ngModel)]="insuranceLead.length" name="length">
+						</mat-form-field>
+						<mat-form-field hintLabel="Square Feet of Unit (ft^2)">
+							<input matInput id="sqFeet" [value]="insuranceLead.sqFeet" [(ngModel)]="insuranceLead.sqFeet" name="sqFeet">
+						</mat-form-field>
+					</div>
+					<div><b>Year manufactured:</b>
+						<mat-form-field>
+							<input matInput id="yearHomeManufactured" [value]="insuranceLead.yearHomeManufactured" [(ngModel)]="insuranceLead.yearHomeManufactured" name="yearHomeManufactured">
+						</mat-form-field>
+					</div>
+					<div><b>Make:</b>
+						<mat-form-field>
+							<input matInput id="make" [value]="insuranceLead.make" [(ngModel)]="insuranceLead.make" name="make">
+						</mat-form-field>
+					</div>
+					<div><b>Model:</b>
+						<mat-form-field>
+							<input matInput id="model" [value]="insuranceLead.model" [(ngModel)]="insuranceLead.model" name="model">
+						</mat-form-field>
+					</div>
+					<div><b>Serial #:</b>
+						<mat-form-field>
+							<input matInput id="serialNumber" [value]="insuranceLead.serialNumber" [(ngModel)]="insuranceLead.serialNumber" name="serialNumber">
+						</mat-form-field>
+					</div>
+					<div><b>Home type:</b>
+						<mat-form-field>
+							<mat-select id="homeTypeId" [value]="insuranceLead.homeTypeId" [(ngModel)]="insuranceLead.homeTypeId" name="homeTypeId">
+								<mat-option *ngFor="let homeType of homeTypes" [value]="homeType">{{ homeType }}</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+					<div><b>Siding type:</b>
+						<mat-form-field>
+							<mat-select id="sidingTypeId" [value]="insuranceLead.sidingTypeId" [(ngModel)]="insuranceLead.sidingTypeId" name="sidingTypeId">
+								<mat-option *ngFor="let sidingType of sidingTypes" [value]="sidingType">{{ sidingType }}</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+					<div><b>Roof type:</b>
+						<mat-form-field>
+							<mat-select id="roofTypeId" [value]="insuranceLead.roofTypeId" [(ngModel)]="insuranceLead.roofTypeId" name="roofTypeId">
+								<mat-option *ngFor="let roofType of roofTypes" [value]="roofType">{{ roofType }}</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+					<div><b>Animals present:</b>
+						<mat-form-field>
+							<mat-select id="animalsPresent" [value]="insuranceLead.animalsPresent" [(ngModel)]="insuranceLead.animalsPresent" name="animalsPresent">
+								<mat-option [value]=true>True</mat-option>
+								<mat-option [value]=false>False</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+					<div><b>Pool or trampoline:</b>
+						<mat-form-field>
+							<mat-select id="poolOrTrampoline" [value]="insuranceLead.poolOrTrampoline" [(ngModel)]="insuranceLead.poolOrTrampoline" name="poolOrTrampoline">
+								<mat-option [value]=true>True</mat-option>
+								<mat-option [value]=false>False</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+					<div><b>Wood stove or fireplace:</b>
+						<mat-form-field>
+							<mat-select id="woodStoveOrFireplace" [value]="insuranceLead.woodStoveOrFireplace" [(ngModel)]="insuranceLead.woodStoveOrFireplace" name="woodStoveOrFireplace">
+								<mat-option [value]=true>True</mat-option>
+								<mat-option [value]=false>False</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+					<div><b>Attached structures present:</b>
+						<mat-form-field>
+							<mat-select id="attachedStructuresPresent" [value]="insuranceLead.attachedStructuresPresent" [(ngModel)]="insuranceLead.attachedStructuresPresent" name="attachedStructuresPresent">
+								<mat-option [value]=true>True</mat-option>
+								<mat-option [value]=false>False</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+					<div><b>Fully skirted:</b>
+						<mat-form-field>
+							<mat-select id="fullySkirted" [value]="insuranceLead.fullySkirted" [(ngModel)]="insuranceLead.fullySkirted" name="fullySkirted">
+								<mat-option [value]=true>True</mat-option>
+								<mat-option [value]=false>False</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+					<div><b>Tied down:</b>
+						<mat-form-field>
+							<mat-select id="tiedDown" [value]="insuranceLead.tiedDown" [(ngModel)]="insuranceLead.tiedDown" name="tiedDown">
+								<mat-option [value]=true>True</mat-option>
+								<mat-option [value]=false>False</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+					<div><b>More than 25 spaces in park:</b>
+						<mat-form-field>
+							<mat-select id="moreThanTwentyFiveSpacesInPark" [value]="insuranceLead.moreThanTwentyFiveSpacesInPark" [(ngModel)]="insuranceLead.moreThanTwentyFiveSpacesInPark" name="moreThanTwentyFiveSpacesInPark">
+								<mat-option [value]=true>True</mat-option>
+								<mat-option [value]=false>False</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+					<div><b>Within incorporated city limits:</b>
+						<mat-form-field>
+							<mat-select id="withinIncorporatedCityLimits" [value]="insuranceLead.withinIncorporatedCityLimits" [(ngModel)]="insuranceLead.withinIncorporatedCityLimits" name="withinIncorporatedCityLimits">
+								<mat-option [value]=true>True</mat-option>
+								<mat-option [value]=false>False</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+					<div><b>Community park:</b>
+						<mat-form-field>
+							<mat-select id="communityPark" [value]="insuranceLead.communityPark" [(ngModel)]="insuranceLead.communityPark" name="communityPark">
+								<mat-option [value]=true>True</mat-option>
+								<mat-option [value]=false>False</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+				</mat-card-content>
+			</mat-card>
+			<mat-card class="card">
+				<mat-card-header class="card-header">
+					<mat-card-title><mat-icon>home</mat-icon>Other</mat-card-title>
+				</mat-card-header>
+				<mat-card-content class="content-detail">
+					<div><b>Limits:</b>
+						<mat-form-field>
+							<textarea matInput id="limits" [value]="insuranceLead.limits" [(ngModel)]="insuranceLead.limits" name="limits"></textarea>
+						</mat-form-field>
+					</div>
+					<div><b>Note:</b>
+						<mat-form-field>
+							<textarea matInput id="note" [value]="insuranceLead.note" [(ngModel)]="insuranceLead.note" name="note"></textarea>
+						</mat-form-field>
+					</div>
+				</mat-card-content>
+			</mat-card>
+		</div>
+	</form>
+</mat-dialog-content>
+<mat-dialog-actions>
+	<button mat-button mat-dialog-close>Cancel</button>
+	<button mat-button [mat-dialog-close]="true" (click)="submitEdits()">Save Changes</button>
+</mat-dialog-actions>

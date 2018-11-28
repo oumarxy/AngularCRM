@@ -1,0 +1,12 @@
+<mat-dialog-content>Fill in fields to add today activity</mat-dialog-content>
+<div class="example-container">
+	<form #todayActivityForm="ngForm">
+		<mat-form-field>
+			<input matInput placeholder="Today Activity" id="label" [(ngModel)]="todayActivity.label" name="label">
+		</mat-form-field>
+	</form>
+</div>
+<mat-dialog-actions>
+	<button mat-button mat-dialog-close>Cancel</button>
+	<button mat-button [mat-dialog-close]="true" (click)="addTodayActivity()" type="submit" color="primary">Add</button>
+</mat-dialog-actions>

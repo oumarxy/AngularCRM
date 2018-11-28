@@ -1,0 +1,36 @@
+.container-fluid, .container {
+	margin-top: 64px;
+}
+
+h1 {
+	margin-bottom: 1.5rem;
+}
+
+
+#navbar {
+	background-color: #f5f5f5;
+	box-shadow: 0 1px 10px rgba(0, 0, 0, .1);
+	padding-top: 15px;
+}
+
+#pageTitle {
+	padding-top: 65px;
+	padding-bottom: 10px;
+	font-weight: bold;
+}
+
+#form {
+	background-color: #f5f5f5;
+	box-shadow: 0 1px 10px rgba(0, 0, 0, .1);
+	padding: 15px;
+}
+
+.row {
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+
+#bottomRedirect {
+	padding-top: 40px;
+}
+

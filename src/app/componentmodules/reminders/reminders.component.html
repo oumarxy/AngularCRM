@@ -1,0 +1,40 @@
+<button mat-raised-button color="primary" (click)="addReminder()">
+	<mat-icon>add_alert</mat-icon>
+	<span>Add Reminder</span>
+</button>
+<mat-table #table [dataSource]="reminderDataSource" matSort>
+	
+	<ng-container *ngFor="let display of reminderDisplaySettings" [matColumnDef]="display.columnDef">
+		<mat-header-cell *matHeaderCellDef>{{ display.header }}</mat-header-cell>
+		<mat-cell *matCellDef="let row" [ctStyleCell]="display.cell(row)" displayHeader="{{ display.header }}">{{ display.cell(row) | formatCell: display.header }}</mat-cell>
+	</ng-container>
+
+	<ng-container cdkColumnDef="view">
+		<mat-header-cell *cdkHeaderCellDef></mat-header-cell>
+		<mat-cell *cdkCellDef="let row" matTooltip="View">
+			<mat-icon (click)="view(row)">pageview</mat-icon>
+		</mat-cell>
+	</ng-container>
+
+	<ng-container cdkColumnDef="edit">
+		<mat-header-cell *cdkHeaderCellDef></mat-header-cell>
+		<mat-cell *cdkCellDef="let row" matTooltip="Edit">
+			<mat-icon (click)="edit(row)" >edit</mat-icon>
+		</mat-cell>
+	</ng-container>
+
+	<ng-container cdkColumnDef="delete">
+		<mat-header-cell *cdkHeaderCellDef></mat-header-cell>
+		<mat-cell *cdkCellDef="let row" matTooltip="Delete">
+			<mat-icon (click)="delete(row)" >delete</mat-icon>
+		</mat-cell>
+	</ng-container>
+
+	<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+	<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+
+<mat-paginator #reminderpaginator
+							[pageIndex]="0"
+							[pageSize]="5">
+</mat-paginator>	

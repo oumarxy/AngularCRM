@@ -1,0 +1,40 @@
+<mat-dialog-content>Fill in fields to add lead status</mat-dialog-content>
+<div class="example-container">
+	<form #leadStatusForm="ngForm">
+		<mat-form-field>
+			<input matInput placeholder="Label" id="label" [(ngModel)]="leadStatus.label" name="label">
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput placeholder="Rank" id="rank" [(ngModel)]="leadStatus.rank" name="rank">
+		</mat-form-field>
+		<mat-form-field>
+			<mat-select  placeholder="Is Default?" id="isDefault"  [(ngModel)]="leadStatus.isDefault" name="isDefault">
+				<mat-option value=true>True</mat-option>
+				<mat-option value=false>False</mat-option>
+			</mat-select>
+		</mat-form-field>
+		<mat-form-field>
+			<mat-select placeholder="Selectable?" id="isSelectable"  [(ngModel)]="leadStatus.isSelectable" name="isSelectable">
+				<mat-option value=true>True</mat-option>
+				<mat-option value=false>False</mat-option>
+			</mat-select>
+		</mat-form-field>
+		<mat-form-field>
+			<mat-select placeholder="Permanent?" id="isPermanent"  [(ngModel)]="leadStatus.isPermanent" name="isPermanent">
+				<mat-option value=true>True</mat-option>
+				<mat-option value=false>False</mat-option>
+			</mat-select>
+		</mat-form-field>
+		<mat-form-field>
+			<mat-select placeholder="Deleted?" id="deleted"  [(ngModel)]="leadStatus.deleted" name="deleted">
+				<mat-option value=true>True</mat-option>
+				<mat-option value=false>False</mat-option>
+			</mat-select>
+		</mat-form-field>
+	</form>
+</div>
+<mat-dialog-actions>
+	<button mat-button mat-dialog-close>Cancel</button>
+	<!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+	<button mat-button [mat-dialog-close]="true" (click)="addLeadStatus()" type="submit" color="primary">Add</button>
+</mat-dialog-actions>

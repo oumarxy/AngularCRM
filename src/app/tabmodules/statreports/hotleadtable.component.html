@@ -1,0 +1,37 @@
+<div class="row">
+	<div class="col-6 stat-half">
+		<button mat-raised-button (click)="buildData()" color="primary">Refresh</button>
+		<canvas id="canvas2">{{ chart2 }}</canvas>
+	</div>
+	<div class="col-6 stat-half">
+		<h5>Hot Leads</h5>
+		<div class="example-loading-shade">
+			<mat-progress-bar mode="buffer" *ngIf="dataSource.loading$ | async"></mat-progress-bar>
+		</div>
+		<mat-table #table [dataSource]="dataSource">
+			<!-- Checkbox Column -->
+			<ng-container cdkColumnDef="select">
+				<mat-cell *cdkCellDef="let row" matTooltip="Select">
+					<mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row.id) : null" [checked]="selection.isSelected(row.id)">
+					</mat-checkbox>
+				</mat-cell>
+			</ng-container>
+
+			<ng-container *ngFor="let display of displaySettings" [matColumnDef]="display.columnDef">
+				<mat-header-cell *matHeaderCellDef>{{ display.header }}</mat-header-cell>
+				<mat-cell *matCellDef="let row" [ctStyleCell]="display.cell(row)" displayHeader="{{ display.header }}">{{ display.cell(row) | formatCell: display.header }}</mat-cell>
+			</ng-container>
+
+			<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+			<mat-row *matRowDef="let row; columns: displayedColumns;" matRipple class="element-row" (click)="openLeadDetail(row)"></mat-row>
+		</mat-table>
+
+		<div class="example-no-results" [style.display]="dataSource?.renderedData.length == 0 ? '' : 'none'">
+			No results found
+		</div>
+
+		<mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+		</mat-paginator>
+	</div>
+</div>
+		

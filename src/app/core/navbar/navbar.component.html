@@ -1,0 +1,36 @@
+<nav class="navbar fixed-top navbar-expand-md navbar-light bg-faded">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+    <a class="navbar-brand" routerLink="/dashboard" href="#">
+        <img src="./assets/nmhi-logo.png">
+    </a>
+    <div *ngIf="nav.visible" class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav nav-tabs mr-auto">
+            <li class="nav-item" routerLinkActive="active blue">
+                <a class="nav-link" routerLink="/dashboard" href="#">Dashboard</a>
+			</li>
+            <li class="nav-item" routerLinkActive="active blue">
+                <a class="nav-link" routerLink="/leads" href="#">Lead Database</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active blue">
+                <a class="nav-link" routerLink="/policies" href="#">Policy Database</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active blue">
+                <a class="nav-link" routerLink="/customers" href="#">Customer Database</a>
+			</li>
+			<li *ngIf="isAdmin()" class="nav-item" routerLinkActive="active blue">
+                <a class="nav-link" routerLink="/statreports" href="#">Reports and Statistics</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active blue">
+                <a class="nav-link" routerLink="/email" href="#">Email</a>
+            </li>
+            <li *ngIf="isDev()" class="nav-item dropdown" routerLinkActive="active blue">
+				<a class="nav-link" routerLink="/admin" href="#">Admin</a>
+            </li>
+        </ul>
+        <span class="navbar-text">
+			<a class="nav-link" href="#" (click)="logout()">Logout</a>
+		</span>
+    </div>
+</nav>

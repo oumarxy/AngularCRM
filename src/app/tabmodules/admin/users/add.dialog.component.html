@@ -1,0 +1,44 @@
+<!--h2 mat-dialog-title>Add {{ refdata }}</h2-->
+<mat-dialog-content>Fill in fields to add {{ refdata }}</mat-dialog-content>
+<div class="example-container">
+	<form #userForm="ngForm">
+		<mat-form-field>
+			<input matInput placeholder="Username" id="userName" [(ngModel)]="user.userName" name="userName">
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput placeholder="Password" id="password" [(ngModel)]="user.password" name="password">
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput placeholder="Email" id="email" [formControl]="email" [(ngModel)]="user.email" name="email" required>
+			<mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput placeholder="First Name" id="firstName" [(ngModel)]="user.firstName" name="firstName">
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput placeholder="Last Name" id="lastName" [(ngModel)]="user.lastName" name="lastName">
+		</mat-form-field>
+		<mat-form-field>
+			<mat-select placeholder="Account enabled?" id="accountEnabled" [(ngModel)]="user.userAccountEnabled" name="userAccountEnabled">
+				<mat-option value=true>True</mat-option>
+				<mat-option value=false>False</mat-option>
+			</mat-select>
+		</mat-form-field>
+		<mat-form-field>
+			<mat-select placeholder="Account unlocked?" id="accountUnlocked" [(ngModel)]="user.userAccountUnlocked" name="userAccountUnlocked">
+				<mat-option value=true>True</mat-option>
+				<mat-option value=false>False</mat-option>
+			</mat-select>
+		</mat-form-field>
+		<mat-form-field>
+			<mat-select placeholder="Role Id" id="roleId" [(ngModel)]="user.roleId" name="roleId">
+				<mat-option *ngFor="let role of roles" [value]="role.id">{{ role.label }}</mat-option>
+			</mat-select>
+		</mat-form-field>
+	</form>
+</div>
+<mat-dialog-actions>
+	<button mat-button mat-dialog-close>Cancel</button>
+	<!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+	<button mat-button [mat-dialog-close]="true" (click)="submitUser()" type="submit" color="primary">Add {{ refdata }}</button>
+</mat-dialog-actions>

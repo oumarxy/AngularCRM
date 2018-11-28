@@ -1,0 +1,57 @@
+<div class="infoBlock col-12">
+	<div>
+		<h5>Name: {{ customer.firstName }} {{ customer.lastName }}</h5>
+		<p><b>Customer ID:</b> {{ customer.id }}</p>
+		<button mat-raised-button color="primary" (click)="editCustomer()"><mat-icon>edit</mat-icon><span> Edit Customer</span></button>
+		<!--a [routerLink]="['/customer', customer.id]" href="#">
+			<button mat-raised-button color="primary">
+				<mat-icon>person</mat-icon><span>View Customer</span>
+			</button>
+		</a-->	
+		<div class="row" id="customerDetail">
+			<div class="col-6">
+				<mat-card class="phone-card">
+					<mat-card-header class="card-header">
+						<mat-card-title><mat-icon>local_phone</mat-icon><span>Phone Book</span></mat-card-title>
+					</mat-card-header>
+					<mat-card-content class="content-detail">
+						<p><b>Phone 1:</b><span>{{ customer.phone1 }} ({{ customer.phone1TypeId }})</span></p>
+						<p><b>Phone 2:</b><span>{{ customer.phone2 }} ({{ customer.phone2TypeId }})</span></p>
+						<p><b>Phone 3:</b><span>{{ customer.phone3 }} ({{ customer.phone3TypeId }})</span></p>
+						<p><b>Phone 4:</b><span>{{ customer.phone4 }} ({{ customer.phone4TypeId }})</span></p>
+					</mat-card-content>
+				</mat-card>
+				<mat-card class="location-card">
+					<mat-card-header class="card-header">
+						<mat-card-title><mat-icon>mail_outline</mat-icon><span>Addresses</span></mat-card-title>
+					</mat-card-header>
+					<mat-card-content class="content-detail">
+						<p><b>Customer address:</b><span>{{ customer.street }}, {{ customer.city}}, {{ customer.stateId }}, {{ customer.zip }}</span></p>
+						<p><b>Mailing address:</b><span>{{ customer.mailingStreet }}, {{ customer.mailingCity}}, {{ customer.mailingStateId }}, {{ customer.mailingZip }}</span></p>
+					</mat-card-content>
+				</mat-card>
+			</div>
+			<div class="col-6">
+				<mat-card class="phone-card">
+					<mat-card-header class="card-header">
+						<mat-card-title><mat-icon>list_alt</mat-icon><span>Other Details</span></mat-card-title>
+					</mat-card-header>
+					<mat-card-content class="content-detail">
+						<p><b>Other name: </b><span>{{ customer.otherName }}</span></p>
+						<p><b>Birth Date:</b><span>{{ customer.birthDate | shortDate }}</span></p>
+						<p><b>Best time to contact:</b><span>{{ customer.bestTimeToContact }}</span></p>
+						<p><b>Creation date:</b><span>{{ customer.creationTime | dateTime }}</span></p>
+						<p><b>Last modified by:</b><span>{{ customer.modifiedBy }}</span></p>
+						<p><b>Modification date:</b><span>{{ customer.modificationTime | dateTime }}</span></p>
+						<p><b>Possible duplicate?:</b><span>{{ customer.possibleDuplicate }}</span></p>
+						<p><b>Duplicate Customer ID:</b><span>{{ customer.duplicateCustomerId }}</span></p>
+					</mat-card-content>
+				</mat-card>
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+
+	

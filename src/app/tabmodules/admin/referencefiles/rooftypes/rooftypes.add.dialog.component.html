@@ -1,0 +1,12 @@
+<mat-dialog-content>Fill in fields to add roof type</mat-dialog-content>
+<div class="example-container">
+	<form #roofTypeForm="ngForm">
+		<mat-form-field>
+			<input matInput placeholder="Roof Type" id="roofType" [(ngModel)]="roofType.label" name="roofType">
+		</mat-form-field>
+	</form>
+</div>
+<mat-dialog-actions>
+	<button mat-button mat-dialog-close>Cancel</button>
+	<button mat-button [mat-dialog-close]="true" (click)="addRoofType()" type="submit" color="primary">Add</button>
+</mat-dialog-actions>

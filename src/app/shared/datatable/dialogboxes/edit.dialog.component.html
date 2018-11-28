@@ -1,0 +1,87 @@
+<h2 mat-dialog-title>Edit</h2>
+<mat-dialog-content>
+	<form #editForm="ngForm">
+		<!--mat-form-field hintLabel="First Name">
+				<input matInput placeholder="{{ editInsuranceLead.firstName }}" id="firstName" [(ngModel)]="insuranceLead.firstName" name="firstName">
+			</mat-form-field>
+			<mat-form-field hintLabel="Last Name">
+				<input matInput placeholder="{{ editInsuranceLead.lastName }}" id="lastName" [(ngModel)]="insuranceLead.lastName" name="lastName">
+			</mat-form-field>
+			<mat-form-field hintLabel="User Id">
+				<mat-select placeholder="{{ editInsuranceLead.userId }}" id="salesAgent" [(ngModel)]="insuranceLead.userId" name="salesAgent">
+					<mat-option *ngFor="let user of users" [value]="user.id">{{ user.userName }}</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field hintLabel="Lead Source Id">
+				<mat-select placeholder="{{ editInsuranceLead.leadSourceId }}" id="leadSourceId" [(ngModel)]="insuranceLead.leadSourceId" name="leadSourceId">
+					<mat-option *ngFor="let leadSource of leadSources" [value]="leadSource.id">{{ leadSource.label }} (id={{ leadSource.id }})</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field hintLabel="Lead Status Id">
+				<mat-select placeholder="{{ editInsuranceLead.leadStatusId }}" id="leadStatusId" [(ngModel)]="insuranceLead.leadStatusId" name="leadStatusId">
+					<mat-option *ngFor="let leadStat of leadStatus" [value]="leadStat.id">{{ leadStat.label }} (id={{ leadStat.id }})</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field hintLabel="Last Contact Date">
+				<input matInput [matDatepicker]="picker" [(ngModel)]="insuranceLead.lastContactDate" placeholder="{{ editInsuranceLead.lastContactDate }}" id="lastContactDate" name="lastContactDate">
+				<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+				<mat-datepicker #picker></mat-datepicker>
+			</mat-form-field>
+			<mat-form-field hintLabel="Home Type">
+				<mat-select placeholder="{{ editInsuranceLead.homeTypeId }}" id="homeTypeId" [(ngModel)]="insuranceLead.homeTypeId" name="homeTypeId">
+					<mat-option *ngFor="let homeType of homeTypes" [value]="homeType.id">{{ homeType.label }} (id={{ homeType.id }})</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field hintLabel="Siding Type">
+				<mat-select placeholder="{{ editInsuranceLead.sidingTypeId }}" id="sidingTypeId" [(ngModel)]="insuranceLead.sidingTypeId" name="sidingTypeId">
+					<mat-option *ngFor="let sidingType of sidingTypes" [value]="sidingType.id">{{ sidingType.label }} (id={{ sidingType.id }})</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field hintLabel="Roof Type">
+				<mat-select placeholder="{{ editInsuranceLead.roofTypeId }}" id="roofTypeId" [(ngModel)]="insuranceLead.roofTypeId" name="roofTypeId">
+					<mat-option *ngFor="let roofType of roofTypes" [value]="roofType.id">{{ roofType.label }} (id={{ roofType.id }})</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field hintLabel="Community Park?">
+				<mat-select placeholder="{{ editInsuranceLead.communityPark }}" id="communityPark" [(ngModel)]="insuranceLead.communityPark" name="communityPark">
+						<mat-option value=true>True</mat-option>
+						<mat-option value=false>False</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field hintLabel="Within five miles of fire department?">
+				<mat-select placeholder="{{ editInsuranceLead.withinFiveMilesOfFireDepartment }}" id="withinFiveMilesOfFireDepartment" [(ngModel)]="insuranceLead.withinFiveMilesOfFireDepartment" name="withinFiveMilesOfFireDepartment">
+						<mat-option value=true>True</mat-option>
+						<mat-option value=false>False</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field hintLabel="More than twenty-five spaces in park?">
+				<mat-select placeholder="{{ editInsuranceLead.moreThanTwentyFiveSpacesInPark }}" id="moreThanTwentyFiveSpacesInPark" [(ngModel)]="insuranceLead.moreThanTwentyFiveSpacesInPark" name="moreThanTwentyFiveSpacesInPark">
+						<mat-option value=true>True</mat-option>
+						<mat-option value=false>False</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field hintLabel="Tied down?">
+				<mat-select placeholder="{{ editInsuranceLead.tiedDown }}" id="tiedDown" [(ngModel)]="insuranceLead.tiedDown" name="tiedDown">
+						<mat-option value=true>True</mat-option>
+						<mat-option value=false>False</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field hintLabel="Fully skirted?">
+				<mat-select placeholder="{{ editInsuranceLead.fullySkirted }}" id="fullySkirted" [(ngModel)]="insuranceLead.fullySkirted" name="fullySkirted">
+						<mat-option value=true>True</mat-option>
+						<mat-option value=false>False</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field hintLabel="Insure personal items?">
+				<mat-select placeholder="{{ editInsuranceLead.insurePersonalItems }}" id="insurePersonalItems" [(ngModel)]="insuranceLead.insurePersonalItems" name="insurePersonalItems">
+						<mat-option value=true>True</mat-option>
+						<mat-option value=false>False</mat-option>
+				</mat-select>
+			</mat-form-field-->
+	</form>
+</mat-dialog-content>
+<mat-dialog-actions>
+	<button mat-button mat-dialog-close>Cancel</button>
+	<!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+	<button mat-button [mat-dialog-close]="true" (click)="edit()">Save Changes</button>
+</mat-dialog-actions>

@@ -1,0 +1,29 @@
+<h2 mat-dialog-title>Edit Policy</h2>
+<mat-dialog-content>
+	<div class="example-container">
+		<form #editPolicyForm="ngForm">
+			<mat-form-field hintLabel="Policy number">
+				<input matInput [value]="policy.policyNumber" id="policyNumber" [(ngModel)]="policy.policyNumber" name="policyNumber">
+			</mat-form-field>
+			<mat-form-field hintLabel="Insurer for Policy">
+				<mat-select id="insurerId" [(ngModel)]="policy.insurerId" name="insurerId">
+					<mat-option *ngFor="let insurer of insurers" [value]="insurer">{{ insurer }}</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field hintLabel="Policy Effective Date">
+				<input matInput [matDatepicker]="picker" [(ngModel)]="policy.effectiveDate" [value]="policy.effectiveDate" id="effectiveDate" name="effectiveDate">
+				<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+				<mat-datepicker #picker></mat-datepicker>
+			</mat-form-field>
+			<mat-form-field hintLabel="Policy Expiration Date">
+				<input matInput [matDatepicker]="picker2" [(ngModel)]="policy.expirationDate" [value]="policy.expirationDate" id="expirationDate" name="expirationDate">
+				<mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+				<mat-datepicker #picker2></mat-datepicker>
+			</mat-form-field>
+		</form>
+	</div>
+</mat-dialog-content>
+<mat-dialog-actions>
+	<button mat-button mat-dialog-close>Cancel</button>
+	<button mat-button [mat-dialog-close]="true" (click)="submitEdits()">Save Changes</button>
+</mat-dialog-actions>

@@ -1,0 +1,32 @@
+.container-fluid, .container {
+    margin-top: 64px;
+}
+
+h1 {
+    margin-bottom: 1.5rem;
+}
+
+.adminNav {
+    padding-left: 20px;
+}
+
+.adminNav ul {
+    list-style: none;
+    margin-top: 0;
+    padding-left: 0;
+}
+
+.adminNav li {
+    font-size: 20px;
+    line-height: 40px;
+}
+
+.mat-table {
+    overflow: auto;
+}
+
+.nav-link {
+    font-size: 12pt;
+    padding: 0;
+}
+  

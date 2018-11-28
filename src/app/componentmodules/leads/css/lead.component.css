@@ -1,0 +1,114 @@
+.tableDetails span {
+	float:right;
+}
+
+.tableDetails p {
+	border-top: 1px solid rgba(0,0,0,.12);
+	padding: 5px 0px;
+	margin-bottom: 0px;
+}
+
+.tableDetails p:hover {
+	background: #f5f5f5;
+}
+
+.row p {
+	margin: 0px;
+	font-size: 10pt;
+}
+
+.mat-input-container {
+	margin-left: 20px;
+}
+
+.card-header mat-icon {
+	vertical-align: middle;
+}
+.phone-card span {
+	margin-left: 5px;
+}
+
+.location-card mat-icon {
+	vertical-align: middle;
+}
+.location-card span, .lead-details1-card span, .lead-details2-card span {
+	margin-left: 5px;
+}
+
+.card-header {
+	padding: 5px 0px;
+}
+
+mat-card-title {
+	margin: 0px;
+}
+
+mat-card-content {
+	padding: 5px 0px;
+}
+
+mat-button-toggle label {
+	margin-bottom: 0px;
+}
+
+#leadTitle p:nth-child(1) {
+	font-size: 20pt;
+}
+
+#leadTitle p:nth-child(2) {
+	font-size: 14pt;
+}
+
+#leadStatus {
+	margin-left: 20px;
+}
+
+/*.lead-status p {
+	font-size: 15pt;
+    display: inline-flex;
+    margin-left: 5px;
+}*/
+
+.lead-status {
+	display: inline-flex;
+}
+
+.lead-status-cold { color: blue; }
+.lead-status-futures { color: purple; }
+.lead-status-warm { color: orange; }
+.lead-status-hot { color: red; }
+.lead-status-sold { color: green; }
+.lead-status-unknown { color: black; }
+
+.cdk-overlay-pane {
+	width: 95%;	
+}
+
+
+.content-detail span {
+	float:right;
+}
+
+.content-detail p {
+	border-bottom: 1px solid rgba(0,0,0,.12);
+	padding: 5px 0px;
+}
+
+.content-detail p:hover {
+	background: #f5f5f5;
+}
+
+#leadPageHeader {
+	background-color: rgba(0,0,0,.03);
+	border-bottom: 1px solid rgba(0,0,0,.125);
+	padding: 10px 10px;
+	margin: 0px;
+	vertical-align: middle;
+}
+
+#leadPageHeader h4 {
+	margin-right: 10px;
+	display: inline-flex;
+	vertical-align: middle;
+	margin-top: 10px;
+}

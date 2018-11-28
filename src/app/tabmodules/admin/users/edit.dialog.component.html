@@ -1,0 +1,51 @@
+<h2 mat-dialog-title>Edit Selection</h2>
+<mat-dialog-content>Edit fields and then click on save</mat-dialog-content>
+<div class="example-container">
+	<form #userForm="ngForm">
+		<mat-form-field hintLabel="Username">
+			<!--label>Current value: {{ editUser.userName }}</label-->
+			<!--input matInput placeholder="{{ editUser.userName }}" id="userName" [(ngModel)]="user.userName" name="userName"-->
+			<input matInput placeholder="{{ editUser.userName }}" id="userName" [(ngModel)]="user.userName" name="userName">
+		</mat-form-field>
+		<mat-form-field hintLabel="Password">
+			<!--input matInput placeholder="Password" id="password" [(ngModel)]="user.password" name="password"-->
+			<input matInput placeholder="Password" id="password" [(ngModel)]="user.password" name="password">
+		</mat-form-field>
+		<mat-form-field hintLabel="Email">
+			<!--input matInput placeholder="{{ editUser.email }}" id="email"  [(ngModel)]="user.email" name="email"-->
+			<input matInput placeholder="{{ editUser.email }}" id="email"  [(ngModel)]="user.email" name="email">
+		</mat-form-field>
+		<mat-form-field hintLabel="First Name">
+			<!--input matInput placeholder="{{ editUser.firstName }}" id="firstName" [(ngModel)]="user.firstName" name="firstName"-->
+			<input matInput placeholder="{{ editUser.firstName }}" id="firstName" [(ngModel)]="user.firstName" name="firstName">
+		</mat-form-field>
+		<mat-form-field hintLabel="Last Name">
+			<!--input matInput placeholder="{{ editUser.lastName }}" id="lastName" [(ngModel)]="user.lastName" name="lastName"-->
+			<input matInput placeholder="{{ editUser.lastName }}" id="lastName" [(ngModel)]="user.lastName" name="lastName">
+		</mat-form-field>
+		<mat-form-field hintLabel="Account enabled?">
+			<!--mat-select placeholder="{{ editUser.userAccountEnabled }}" id="accountEnabled" [(ngModel)]="user.userAccountEnabled" name="userAccountEnabled"-->
+			<mat-select placeholder="{{ editUser.userAccountEnabled }}" id="accountEnabled" [(ngModel)]="user.userAccountEnabled" name="userAccountEnabled">
+				<mat-option value=true>True</mat-option>
+				<mat-option value=false>False</mat-option>
+			</mat-select>
+		</mat-form-field>
+		<mat-form-field hintLabel="Account Unlocked?">
+			<!--mat-select placeholder="{{ editUser.userAccountLocked }}" id="accountLocked" [(ngModel)]="user.userAccountLocked" name="userAccountLocked"-->
+			<mat-select placeholder="{{ editUser.userAccountUnlocked }}" id="accountUnlocked" [(ngModel)]="user.userAccountUnlocked" name="userAccountUnlocked">
+				<mat-option value=true>True</mat-option>
+				<mat-option value=false>False</mat-option>
+			</mat-select>
+		</mat-form-field>
+		<mat-form-field hintLabel="Role">
+			<mat-select placeholder="{{ editUser.roleId }}" id="roleId" [(ngModel)]="user.roleId" name="roleId">
+				<mat-option *ngFor="let role of roles" [value]="role.id">{{ role.label }}</mat-option>
+			</mat-select>
+		</mat-form-field>
+	</form>
+</div>
+<mat-dialog-actions>
+	<button mat-button mat-dialog-close>Cancel</button>
+	<!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+	<button mat-button [mat-dialog-close]="true" (click)="submitEdits()">Save Changes</button>
+</mat-dialog-actions>

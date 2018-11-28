@@ -1,0 +1,61 @@
+<mat-dialog-content>Select fields to filter leads</mat-dialog-content>
+<form #filterForm="ngForm">
+	<div class="col-md-6" id="refdata">
+		<mat-form-field>
+			<input matInput placeholder="First Name" id="firstName" [(ngModel)]="customerFilters.firstName" name="firstName">
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput placeholder="Last Name" id="lastName" [(ngModel)]="customerFilters.lastName" name="lastName">
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput placeholder="Other Name" id="otherName" [(ngModel)]="customerFilters.otherName" name="otherName">
+		</mat-form-field>
+
+		<mat-form-field>
+			<input matInput placeholder="Home Phone" id="homePhone" [(ngModel)]="customerFilters.homePhone" name="homePhone">
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput placeholder="Work Phone" id="workPhone" [(ngModel)]="customerFilters.workPhone" name="workPhone">
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput placeholder="Cell Phone" id="cellPhone" [(ngModel)]="customerFilters.cellPhone" name="cellPhone">
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput placeholder="Other Phone" id="otherPhone" [(ngModel)]="customerFilters.otherPhone" name="otherPhone">
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput placeholder="Default Phone" id="defaultPhone" [(ngModel)]="customerFilters.defaultPhone" name="defaultPhone">
+		</mat-form-field>
+
+		<mat-form-field>
+			<input matInput placeholder="Best time to contact?" id="bestTimeToContact" [(ngModel)]="customerFilters.bestTimeToContact" name="bestTimeToContact">
+		</mat-form-field>
+
+		<mat-form-field>
+			<input matInput placeholder="Street" id="street" [(ngModel)]="customerFilters.street" name="street">
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput placeholder="City" id="city" [(ngModel)]="customerFilters.city" name="city">
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput placeholder="State" id="state" [(ngModel)]="customerFilters.state" name="state">
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput placeholder="Zip Code" id="zip" [(ngModel)]="customerFilters.zip" name="zip">
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput placeholder="Country" id="country" [(ngModel)]="customerFilters.country" name="country">
+		</mat-form-field>
+
+		<mat-form-field>
+			<input matInput placeholder="Possible Duplicate?" id="possibleDuplicate" [(ngModel)]="customerFilters.possibleDuplicate" name="possibleDuplicate">
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput placeholder="Date of last lead added?" id="lastleadAddedDate" [(ngModel)]="customerFilters.lastleadAddedDate" name="lastleadAddedDate">
+		</mat-form-field>
+	</div>
+</form>
+<mat-dialog-actions>
+	<button mat-button mat-dialog-close>Cancel</button>
+	<button mat-button [mat-dialog-close]="true" (click)="addFilters()" type="submit" color="primary">Add filters</button>
+</mat-dialog-actions>

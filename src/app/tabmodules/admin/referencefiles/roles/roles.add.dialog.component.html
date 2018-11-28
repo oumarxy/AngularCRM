@@ -1,0 +1,45 @@
+<mat-dialog-content>Fill in fields to add role</mat-dialog-content>
+<div class="example-container">
+	<form #roleForm="ngForm">
+		<mat-form-field>
+			<input matInput placeholder="Label" id="label" [(ngModel)]="role.label" name="label">
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput placeholder="Rank" id="rank" [(ngModel)]="role.rank" name="rank">
+		</mat-form-field>
+		<mat-form-field>
+			<mat-select  placeholder="Can Edit?" id="canEdit"  [(ngModel)]="role.canEdit" name="canEdit">
+				<mat-option value=true>True</mat-option>
+				<mat-option value=false>False</mat-option>
+			</mat-select>
+		</mat-form-field>
+		<mat-form-field>
+			<mat-select placeholder="Can Add?" id="canAdd"  [(ngModel)]="role.canAdd" name="canAdd">
+				<mat-option value=true>True</mat-option>
+				<mat-option value=false>False</mat-option>
+			</mat-select>
+		</mat-form-field>
+		<mat-form-field>
+			<mat-select placeholder="Can Delete?" id="canDelete"  [(ngModel)]="role.canDelete" name="canDelete">
+				<mat-option value=true>True</mat-option>
+				<mat-option value=false>False</mat-option>
+			</mat-select>
+		</mat-form-field>
+		<mat-form-field>
+			<mat-select placeholder="Can View User Data?" id="canViewUserData"  [(ngModel)]="role.canViewUserData" name="canViewUserData">
+				<mat-option value=true>True</mat-option>
+				<mat-option value=false>False</mat-option>
+			</mat-select>
+		</mat-form-field>
+		<mat-form-field>
+			<mat-select placeholder="Can Email?" id="canEmail"  [(ngModel)]="role.canEmail" name="canEmail">
+				<mat-option value=true>True</mat-option>
+				<mat-option value=false>False</mat-option>
+			</mat-select>
+		</mat-form-field>
+	</form>
+</div>
+<mat-dialog-actions>
+	<button mat-button mat-dialog-close>Cancel</button>
+	<button mat-button [mat-dialog-close]="true" (click)="addRole()" type="submit" color="primary">Add</button>
+</mat-dialog-actions>

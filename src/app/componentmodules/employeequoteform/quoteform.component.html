@@ -1,0 +1,368 @@
+<div *ngIf="dataLoaded" class="container">
+	<mat-card>
+		<mat-card-header class="card-header">
+			<mat-card-title>General Information</mat-card-title>
+		</mat-card-header>
+		<mat-card-content class="content-detail">
+			<label>Applicant Name</label>
+			<div class="form-row">
+				<mat-form-field>
+					<input matInput placeholder="First Name" id="firstName" [(ngModel)]="customer.firstName" name="firstName">
+				</mat-form-field>	
+				<mat-form-field>
+					<input matInput placeholder="Last Name"  id="lastName" [(ngModel)]="customer.lastName" name="lastName">
+				</mat-form-field>
+			</div>
+			<label>Applicant Date of Birth</label>
+			<div class="form-row">
+				<mat-form-field>
+					<!--input matInput [matDatepicker]="picker" [(ngModel)]="customer.birthDate" placeholder="Date of birth" id="birthdate" name="birthdate"-->
+					<input matInput [matDatepicker]="applicantDOB" placeholder="DOB" id="birthdate" [(ngModel)]="customer.birthDate" name="birthdate">
+					<mat-datepicker-toggle matSuffix [for]="applicantDOB"></mat-datepicker-toggle>
+					<mat-datepicker #applicantDOB></mat-datepicker>
+				</mat-form-field>
+			</div>
+			<label>Is there a Co-Applicant?</label>
+			<div class="form-row">
+				<mat-radio-group [(ngModel)]="coApplicantExists" >
+					<mat-radio-button [value]="true" name="coApplicantExists">Yes</mat-radio-button>
+					<mat-radio-button [value]="false" name="coApplicantExists">No</mat-radio-button>
+				</mat-radio-group>
+			</div>
+			<div *ngIf="coApplicantExists">
+				<label>Co-Applicant Name</label>
+				<div class="form-row">
+					<mat-form-field>
+						<input matInput placeholder="First Name" id="coApplicantFirstName" [(ngModel)]="lead.coApplicantFirstName" name="coApplicantFirstName">
+					</mat-form-field>	
+					<mat-form-field>
+						<input matInput placeholder="Last Name" id="coApplicantLastName" [(ngModel)]="lead.coApplicantLastName" name="coApplicantLastName">
+					</mat-form-field>
+				</div>
+				<label>Co-Applicant Date of Birth</label>
+				<div class="form-row">
+					<mat-form-field>
+						<!--input matInput [matDatepicker]="picker" [(ngModel)]="customer.birthDate" placeholder="Date of birth" id="birthdate" name="birthdate"-->
+						<input matInput [matDatepicker]="coApplicantDOB" placeholder="DOB" id="coApplicantDateOfBirth" [(ngModel)]="lead.coApplicantDateOfBirth" name="coApplicantDateOfBirth">
+						<mat-datepicker-toggle matSuffix [for]="coApplicantDOB"></mat-datepicker-toggle>
+						<mat-datepicker #coApplicantDOB></mat-datepicker>
+					</mat-form-field>
+				</div>
+			</div>
+			<div class="form-row">
+				<div>
+					<label>Phone 1</label>
+					<mat-form-field>
+						<input matInput placeholder="Phone" id="phone1" [(ngModel)]="customer.phone1" name="phone1">
+					</mat-form-field>
+				</div>
+				<div>
+					<label>Phone 1 Type</label>
+					<mat-form-field>
+						<mat-select placeholder="Phone Type" id="phone1Type" [(ngModel)]="customer.phone1TypeId" name="phone1Type">
+							<mat-option *ngFor="let phoneType of phoneTypes" [value]="phoneType.id">{{ phoneType.label }}</mat-option>
+						</mat-select>
+					</mat-form-field>
+				</div>
+			</div>
+			<div class="form-row">
+				<div>
+					<label>Phone 2</label>
+					<mat-form-field>
+						<input matInput placeholder="Phone" id="phone2" [(ngModel)]="customer.phone2" name="phone2">
+					</mat-form-field>
+				</div>
+				<div>
+					<label>Phone 2 Type</label>
+					<mat-form-field>
+						<mat-select placeholder="Phone Type" id="phone2Type" [(ngModel)]="customer.phone2TypeId" name="phone2Type">
+							<mat-option *ngFor="let phoneType of phoneTypes" [value]="phoneType.id">{{ phoneType.label }}</mat-option>
+						</mat-select>
+					</mat-form-field>
+				</div>
+			</div>
+			<div class="form-row">
+				<div>
+					<label>Phone 3</label>
+					<mat-form-field>
+						<input matInput placeholder="Phone" id="phone3" [(ngModel)]="customer.phone3" name="phone3">
+					</mat-form-field>
+				</div>
+				<div>
+					<label>Phone 3 Type</label>
+					<mat-form-field>
+						<mat-select placeholder="Phone Type" id="phone3Type" [(ngModel)]="customer.phone3TypeId" name="phone3Type">
+							<mat-option *ngFor="let phoneType of phoneTypes" [value]="phoneType.id">{{ phoneType.label }}</mat-option>
+						</mat-select>
+					</mat-form-field>
+				</div>
+			</div>
+			<div class="form-row">
+				<div>
+					<label>Phone 4</label>
+					<mat-form-field>
+						<input matInput placeholder="Phone" id="phone4" [(ngModel)]="customer.phone4" name="phone4">
+					</mat-form-field>
+				</div>
+				<div>
+					<label>Phone 4 Type</label>
+					<mat-form-field>
+						<mat-select placeholder="Phone Type" id="phone4Type" [(ngModel)]="customer.phone4TypeId" name="phone4Type">
+							<mat-option *ngFor="let phoneType of phoneTypes" [value]="phoneType.id">{{ phoneType.label }}</mat-option>
+						</mat-select>
+					</mat-form-field>
+				</div>
+			</div>
+			<label>Existing Emails</label>
+			<div class="form-row">
+				<mat-list role="list">
+					<mat-list-item *ngFor="let email of existingEmails" role="listitem">{{ email.emailAddress }}</mat-list-item>
+				</mat-list>
+			</div>
+			<label>Add New Email</label>
+			<div class="form-row">
+				<mat-form-field>
+					<input matInput placeholder="Customer Email" id="email" [formControl]="email" [(ngModel)]="customer.email" name="email" required>
+					<mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+				</mat-form-field>
+			</div>
+			<label>Best Method To Contact</label>
+			<div class="form-row">
+				<mat-form-field>
+					<mat-select placeholder="Preferred Method" id="bestMethodToContact" [(ngModel)]="customer.bestMethodToContact" name="bestMethodToContact">
+						<mat-option value="phone">Email</mat-option>
+						<mat-option *ngFor="let phoneType of phoneTypes" [value]="phoneType.id">{{ phoneType.label }}</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+			<label>Mailing Address</label>
+			<div class="form-row">
+				<mat-form-field>
+					<input matInput placeholder="Street"  id="mailingStreet" [(ngModel)]="customer.mailingStreet" name="mailingStreet">
+				</mat-form-field>
+			</div>
+			<div class="form-row">
+				<mat-form-field>
+					<input matInput placeholder="City" id="mailingCity" [(ngModel)]="customer.mailingCity" name="mailingCity">
+				</mat-form-field>
+				<mat-form-field>
+					<mat-select placeholder="State" id="state" [(ngModel)]="customer.mailingStateId" name="state">
+						<mat-option *ngFor="let state of states" [value]="state.id">{{ state.label }}</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+			<div class="form-row">
+				<mat-form-field>
+					<input matInput placeholder="ZIP Code" id="mailingZip" [(ngModel)]="customer.mailingZip" name="mailingZip">
+				</mat-form-field>
+			</div>
+			<label>Delivery Address</label>
+			<div class="form-row">
+				<mat-form-field>
+					<input matInput placeholder="Street" id="street" [(ngModel)]="customer.street" name="street">
+				</mat-form-field>
+			</div>
+			<div class="form-row">
+				<mat-form-field>
+					<input matInput placeholder="City" id="city" [(ngModel)]="customer.city" name="city">
+				</mat-form-field>
+				<mat-form-field>
+					<mat-select  placeholder="State" id="state" [(ngModel)]="customer.stateId" name="state">
+						<mat-option *ngFor="let state of states" [value]="state.id">{{ state.label }}</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+			<div class="form-row">
+				<mat-form-field>
+					<input matInput placeholder="ZIP Code" id="zip" [(ngModel)]="customer.zip" name="zip">
+				</mat-form-field>
+			</div>
+			<label>County</label>
+			<div class="form-row">
+				<mat-form-field>
+					<input matInput placeholder="County" id="country" [(ngModel)]="customer.country" name="country">
+				</mat-form-field>
+			</div>
+		</mat-card-content>
+	</mat-card>
+	<mat-card>
+		<mat-card-header class="card-header">
+			<mat-card-title>Insurance History</mat-card-title>
+		</mat-card-header>
+		<mat-card-content class="content-detail">
+			<div class="form-row">
+				<div class="form-column">
+					<label>Company Name</label>
+					<mat-form-field>
+						<input matInput placeholder="Company Name" id="prevInsuranceCompanyName" [(ngModel)]="lead.prevInsuranceCompanyName" name="prevInsuranceCompanyName">
+					</mat-form-field>
+				</div>
+				<div class="form-column">
+					<label>Policy Expiration Date</label>
+					<mat-form-field>
+						<!--input matInput [matDatepicker]="picker" [(ngModel)]="customer.birthDate" placeholder="Date of birth" id="birthdate" name="birthdate"-->
+						<input matInput [matDatepicker]="currentPolicyExpirationDate" placeholder="Expiration Date" id="currentPolicyExpirationDate" [(ngModel)]="lead.currentPolicyExpirationDate" name="currentPolicyExpirationDate">
+						<mat-datepicker-toggle matSuffix [for]="currentPolicyExpirationDate"></mat-datepicker-toggle>
+						<mat-datepicker #currentPolicyExpirationDate></mat-datepicker>
+					</mat-form-field>
+				</div>
+			</div>
+			<label>Any claims in the last 5 years</label>
+			<div class="form-row">
+				<mat-radio-group id="anyClaimsPrevFiveYears" [(ngModel)]="lead.anyClaimsPrevFiveYears" name="anyClaimsPrevFiveYears">
+					<mat-radio-button [value]="true" name="">Yes</mat-radio-button>
+					<mat-radio-button [value]="false" name="">No</mat-radio-button>
+				</mat-radio-group>
+			</div>
+		</mat-card-content>
+	</mat-card>
+	<mat-card>
+		<mat-card-header class="card-header">
+			<mat-card-title>Home/Property Information</mat-card-title>
+		</mat-card-header>
+		<mat-card-content class="content-detail">
+			<div class="form-row">
+				<div class="form-column">
+					<label>Year Build</label>
+					<mat-form-field>
+						<input matInput placeholder="year" id="yearHomeManufactured" [(ngModel)]="lead.yearHomeManufactured" name="yearHomeManufactured">
+					</mat-form-field>
+				</div>
+				<div class="form-column">
+					<label>Dimensions</label>
+					<div class="form-row">
+						<mat-form-field>
+							<input matInput placeholder="Width of Unit" id="width" [(ngModel)]="lead.width" name="width">
+						</mat-form-field>
+						<mat-form-field>
+							<input matInput placeholder="Length of Unit" id="length" [(ngModel)]="lead.length" name="length">
+						</mat-form-field>
+						<mat-form-field>
+							<input matInput placeholder="Square feet of Unit" id="sqFeet" [(ngModel)]="lead.sqFeet" name="sqFeet">
+							<mat-hint align="end">Fill this out if width and/or length unknown </mat-hint>
+						</mat-form-field>
+					</div>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-column">
+					<label>Purchase Amount (not including land)</label>
+					<mat-form-field>
+						<input matInput placeholder="$" id="purchaseAmount" [(ngModel)]="lead.purchaseAmount" name="purchaseAmount">
+					</mat-form-field>
+				</div>
+				<div class="form-column">
+					<label>Purchase Date</label>
+					<mat-form-field>
+						<!--input matInput [matDatepicker]="picker" [(ngModel)]="customer.birthDate" placeholder="Date of birth" id="birthdate" name="birthdate"-->
+						<input matInput [matDatepicker]="purchaseDate" placeholder="Purchase Date" id="purchaseDate" [(ngModel)]="lead.purchaseDate" name="purchaseDate">
+						<mat-datepicker-toggle matSuffix [for]="purchaseDate"></mat-datepicker-toggle>
+						<mat-datepicker #purchaseDate></mat-datepicker>
+					</mat-form-field>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-column">
+					<label>Tied Down</label>
+					<mat-radio-group  id="tiedDown" [(ngModel)]="lead.tiedDown" name="tiedDown">
+						<mat-radio-button [value]="true" name="">Yes</mat-radio-button>
+						<mat-radio-button [value]="false" name="">No</mat-radio-button>
+					</mat-radio-group>
+				</div>
+				<div class="form-column">
+					<label>Roof Type</label>
+					<mat-form-field>
+						<mat-select placeholder="Roof Type" id="roofTypeId" [(ngModel)]="lead.roofTypeId" name="roofTypeId">
+							<mat-option *ngFor="let roofType of roofTypes" [value]="roofType.id">{{ roofType.label }}</mat-option>
+						</mat-select>
+					</mat-form-field>
+				</div>
+				<div class="form-column">
+					<label>Siding Type</label>
+					<mat-form-field>
+						<mat-select placeholder="Siding Type" id="sidingTypeId" [(ngModel)]="lead.sidingTypeId" name="sidingTypeId">
+							<mat-option *ngFor="let sidingType of sidingTypes" [value]="sidingType.id">{{ sidingType.label }}</mat-option>
+						</mat-select>
+					</mat-form-field>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-column">
+					<label>Make</label>
+					<mat-form-field>
+						<input matInput placeholder="make" id="make" [(ngModel)]="lead.make" name="make">
+					</mat-form-field>
+				</div>
+				<div class="form-column">
+					<label>Model</label>
+					<mat-form-field>
+						<input matInput placeholder="model" id="model" [(ngModel)]="lead.model" name="model">
+					</mat-form-field>
+				</div>
+				<div class="form-column">
+					<label>Serial Number</label>
+					<mat-form-field>
+						<input matInput placeholder="serial #" id="serialNumber" [(ngModel)]="lead.serialNumber" name="serialNumber">
+					</mat-form-field>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-column">
+					<label>Is the home in a mobile home park or community?</label>
+					<mat-radio-group id="communityPark" [(ngModel)]="lead.communityPark" name="communityPark">
+						<mat-radio-button [value]="true" name="">Yes</mat-radio-button>
+						<mat-radio-button [value]="false" name="">No</mat-radio-button>
+					</mat-radio-group>
+				</div>
+				<div class="form-column">
+					<label>Are there any animals?</label>
+					<mat-radio-group id="animalsPresent" [(ngModel)]="lead.animalsPresent" name="animalsPresent">
+						<mat-radio-button [value]="true" name="">Yes</mat-radio-button>
+						<mat-radio-button [value]="false" name="">No</mat-radio-button>
+					</mat-radio-group>
+				</div>
+				<div class="form-column">
+					<label>Is there a pool or trampoline?</label>
+					<mat-radio-group id="poolOrTrampoline" [(ngModel)]="lead.poolOrTrampoline" name="poolOrTrampoline">
+						<mat-radio-button [value]="true" name="">Yes</mat-radio-button>
+						<mat-radio-button [value]="false" name="">No</mat-radio-button>
+					</mat-radio-group>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-column">
+					<label>Is there a wood stove or Fireplace?</label>
+					<mat-radio-group id="woodStoveOrFireplace" [(ngModel)]="lead.woodStoveOrFireplace" name="woodStoveOrFireplace">
+						<mat-radio-button [value]="true" name="">Yes</mat-radio-button>
+						<mat-radio-button [value]="false" name="">No</mat-radio-button>
+					</mat-radio-group>
+				</div>
+				<div class="form-column">
+					<label>Are there any attached structures?</label>
+					<mat-radio-group id="attachedStructuresPresent" [(ngModel)]="lead.attachedStructuresPresent" name="attachedStructuresPresent">
+						<mat-radio-button [value]="true" name="">Yes</mat-radio-button>
+						<mat-radio-button [value]="false" name="">No</mat-radio-button>
+					</mat-radio-group>
+				</div>
+				<div class="form-column">
+					<label>Is/will the home be financed?</label>
+					<mat-radio-group id="homeFinanced" [(ngModel)]="lead.homeFinanced" name="homeFinanced">
+						<mat-radio-button [value]="true" name="">Yes</mat-radio-button>
+						<mat-radio-button [value]="false" name="">No</mat-radio-button>
+					</mat-radio-group>
+				</div>
+			</div>
+			<label>There are limits for firearms, furs, jewelry, and collectibes</label>
+			<mat-form-field>
+				<textarea matInput placeholder="Type here" id="limits" [(ngModel)]="lead.limits" name="limits"></textarea>
+			</mat-form-field>
+			<label>Extra notes</label>
+			<mat-form-field>
+				<textarea matInput placeholder="Type here" id="note" [(ngModel)]="lead.note" name="note"></textarea>
+			</mat-form-field>
+		</mat-card-content>
+	</mat-card>
+	<div class="button-row">
+		<button mat-raised-button (click)="submit()" color="primary">Submit</button>
+	</div>
+</div>

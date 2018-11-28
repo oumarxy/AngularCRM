@@ -1,0 +1,15 @@
+<!--h2 mat-dialog-title>Add {{ refdata }}</h2-->
+<mat-dialog-content>Select to whom these leads be assigned:
+	<form #userForm="ngForm">
+		<mat-form-field>
+			<mat-select placeholder="Sales Agent" id="salesAgent" [(ngModel)]="newId" name="salesAgent">
+				<mat-option *ngFor="let user of users" [value]="user.id">{{ user.firstName }} {{ user.lastName}} ({{ user.userName }})</mat-option>
+			</mat-select>
+		</mat-form-field>
+	</form>
+</mat-dialog-content>
+<mat-dialog-actions>
+	<button mat-button mat-dialog-close>Cancel</button>
+	<!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+	<button mat-button [mat-dialog-close]="true" (click)="assignLeads()" type="submit" color="primary">Assign</button>
+</mat-dialog-actions>

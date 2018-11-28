@@ -1,0 +1,8 @@
+.mat-column-edit, .mat-column-delete, .mat-column-view {
+	flex: 0 0 30px;
+}
+
+.documentrow {
+	display: flex;
+	flex-wrap: wrap;
+}

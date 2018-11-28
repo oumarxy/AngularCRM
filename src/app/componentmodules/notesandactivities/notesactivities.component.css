@@ -1,0 +1,23 @@
+.row {
+	margin: 20px 0px 0px 0px;
+}
+
+.row:nth-child(2) {
+	margin-bottom: 10px;
+}
+
+.mat-column-edit, .mat-column-delete, .mat-column-deleteActivity, .mat-column-editActivity, .mat-column-view {
+	flex: 0 0 30px;
+}
+
+.notefield {
+	width: 100%;
+}
+
+mat-card-header {
+	background-color: rgba(0,0,0,.03);
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    padding: 10px 10px;
+    margin: 0px;
+    vertical-align: middle;
+}

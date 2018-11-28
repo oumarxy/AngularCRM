@@ -1,0 +1,21 @@
+<mat-dialog-content>Fill in fields to add lead source</mat-dialog-content>
+<div class="example-container">
+    <form #leadSourceForm="ngForm">
+        <mat-form-field>
+            <input matInput placeholder="Label" id="label" [(ngModel)]="leadSource.label" name="label">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Website" id="website" [(ngModel)]="leadSource.website" name="website">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select placeholder="Is Deleted?" id="deleted" [(ngModel)]="leadSource.deleted" name="deleted">
+                <mat-option value=true>True</mat-option>
+                <mat-option value=false>False</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+</div>
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" (click)="addLeadSource()" type="submit" color="primary">Add</button>
+</mat-dialog-actions>

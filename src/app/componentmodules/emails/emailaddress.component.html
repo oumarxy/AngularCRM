@@ -1,0 +1,34 @@
+<mat-form-field>
+	<input matInput placeholder="Email Address" id="emailAddress" [formControl]="email" [(ngModel)]="emailAddress.emailAddress" name="emailAddress" required>
+	<mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+</mat-form-field>
+<button mat-raised-button color="primary" (click)="addEmail()"><mat-icon>contact_mail</mat-icon><span> Add Email</span></button>					
+<div>
+	<mat-progress-bar mode="buffer" *ngIf="emailDataSource.loading$ | async"></mat-progress-bar>
+	<mat-table #table [dataSource]="emailDataSource">
+		<ng-container *ngFor="let display of emailDisplaySettings" [matColumnDef]="display.columnDef">
+			<mat-header-cell *matHeaderCellDef>{{ display.header }}</mat-header-cell>
+			<mat-cell *matCellDef="let row">{{ display.cell(row)  | formatCell: display.header }}</mat-cell>
+		</ng-container>
+		<ng-container cdkColumnDef="edit">
+			<mat-header-cell *cdkHeaderCellDef></mat-header-cell>
+			<mat-cell *cdkCellDef="let row">
+				<mat-icon (click)="edit(row)">edit</mat-icon>
+			</mat-cell>
+		</ng-container>
+		<ng-container cdkColumnDef="delete">
+			<mat-header-cell *cdkHeaderCellDef></mat-header-cell>
+			<mat-cell *cdkCellDef="let row">
+				<mat-icon (click)="delete(row)">delete</mat-icon>
+			</mat-cell>
+		</ng-container>
+		<mat-header-row *matHeaderRowDef="emailDisplayedColumns"></mat-header-row>
+		<mat-row *matRowDef="let row; columns: emailDisplayedColumns;"></mat-row>
+	</mat-table>
+</div>
+<mat-paginator #emailpaginator
+							[pageIndex]="0"
+							[pageSize]="5">
+</mat-paginator>	
+
+	

@@ -1,0 +1,30 @@
+<div class="container">
+	<h2 id="pageTitle">Login</h2>
+	<form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" role="form" id="form" method="post" action="" novalidate>
+		<div class="row" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+			<label class="col-md-1 col-md-offset-4" for="username">Username</label>
+			<div class="col-md-3">
+				<input class="form-control" type="text" id="username" name="username" placeholder="username" [(ngModel)]="model.username" #username="ngModel" required>
+				<div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+			</div>
+		</div>
+		<div class="row" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+			<label class="col-md-1 col-md-offset-4" for="password">Password</label>
+			<div class="col-md-3">
+				<input class="form-control" type="password" id="password" name="password" placeholder="password" [(ngModel)]="model.password" #password="ngModel" required>
+				<div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2 col-md-offset-5">
+				<button type="submit" class="btn btn-primary">Proceed</button>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4">
+				<div *ngIf="error" class="alert alert-danger">{{error}}</div>
+			</div>
+		</div>
+	</form>
+</div>

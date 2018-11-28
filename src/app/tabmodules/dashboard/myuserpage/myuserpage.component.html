@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-6">
+        <p><b>Username:</b><span>{{ currentUser?.userName }}</span></p>
+        <p><b>Name:</b><span>{{ currentUser?.firstName}} {{ currentUser?.lastName}}</span></p>
+        <p><b>Email:</b><span>{{ currentUser?.email }}</span></p>
+        <p><b>Id:</b><span>{{ currentUser?.id }}</span></p>
+        <p><b>Last password reset:</b><span>{{ currentUser?.lastPasswordResetDate }}</span></p>
+        <p><b>Last modified:</b><span>{{ currentUser?.modificationTime }}</span></p>
+    </div>
+    <div class="col-6">
+        <p><b>Role Id:</b><span>{{ currentUser?.roleId }}</span></p>
+        <p><b>Account enabled:</b><span>{{ currentUser?.userAccountEnabled }}</span></p>
+        <p><b>Account locked:</b> <span>{{ currentUser?.userAccountUnlocked }}</span></p>
+        <p><b>Created:</b><span>{{ currentUser?.creationTime }}</span></p>
+    </div>
+</div>
+        

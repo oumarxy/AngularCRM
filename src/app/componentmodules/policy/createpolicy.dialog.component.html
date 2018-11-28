@@ -1,0 +1,35 @@
+<div id="createPolicyContainer">
+	<form #createPolicyForm="ngForm">
+		<h5>Please complete the following policy information</h5>
+		<mat-form-field class="inputfield">
+			<input matInput placeholder="What is the policy number?" id="policyNumber" [(ngModel)]="policy.policyNumber" name="policyNumber">
+		</mat-form-field>
+		<mat-form-field class="inputfield">
+			<input matInput placeholder="Write a name for this policy" id="policyName" [(ngModel)]="policy.policyName" name="policyName">
+		</mat-form-field>
+		<mat-form-field class="inputfield">
+				<mat-select placeholder="Who is the insurer for this policy?" id="insurerId" [(ngModel)]="policy.insurerId" name="insurerId">
+					<mat-option *ngFor="let insurer of insurers" [value]="insurer.id">{{ insurer.label }}</mat-option>
+				</mat-select>
+			</mat-form-field>
+		<mat-form-field>
+			<input matInput [matDatepicker]="picker" [(ngModel)]="policy.effectiveDate" placeholder="Policy will be effective when?" id="effectiveDate" name="effectiveDate">
+			<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+			<mat-datepicker #picker></mat-datepicker>
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput [matDatepicker]="picker2" [(ngModel)]="policy.expirationDate" placeholder="Policy will expire on...?" id="expirationDate" name="expirationDate">
+			<mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+			<mat-datepicker #picker2></mat-datepicker>
+		</mat-form-field>
+	</form>
+	<div *ngIf="documentationComplete()">
+		<h5>If all information looks correct, click 'Activate Policy' to finish</h5>
+		<button mat-raised-button color="primary" (click)="createPolicy()">Activate Policy</button>
+	</div>
+	<div *ngIf="!documentationComplete()">
+		<div class="alert alert-danger" role="alert">
+			WARNING! - You are missing necessary documents to create this policy!  Please attach the necessary documents provided by the insurance broker.
+		</div>
+	</div>	
+</div>

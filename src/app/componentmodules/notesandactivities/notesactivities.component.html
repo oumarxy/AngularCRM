@@ -1,0 +1,129 @@
+<div class="row">
+	<div class="col-7">
+		<mat-card>
+			<mat-card-header>
+				<h6>Lead Notes:</h6>
+			</mat-card-header>
+			<mat-card-content>
+				<mat-progress-bar mode="buffer" *ngIf="dataSource.loading$ | async"></mat-progress-bar>
+				<mat-table #table [dataSource]="dataSource" matSort>
+			
+					<ng-container *ngFor="let display of displaySettings" [matColumnDef]="display.columnDef">
+						<mat-header-cell *matHeaderCellDef>{{ display.header }}</mat-header-cell>
+						<mat-cell *matCellDef="let row" [ctStyleCell]="display.cell(row)" displayHeader="{{ display.header }}">{{ display.cell(row) | formatCell: display.header }}</mat-cell>
+					</ng-container>
+					<ng-container cdkColumnDef="view">
+						<mat-header-cell *cdkHeaderCellDef></mat-header-cell>
+						<mat-cell *cdkCellDef="let row" matTooltip="View">
+							<mat-icon (click)="view(row)">pageview</mat-icon>
+						</mat-cell>
+					</ng-container>
+					<ng-container cdkColumnDef="edit">
+						<mat-header-cell *cdkHeaderCellDef></mat-header-cell>
+						<mat-cell *cdkCellDef="let row" matTooltip="Edit">
+							<mat-icon (click)="edit(row)" >edit</mat-icon>
+						</mat-cell>
+					</ng-container>
+		
+					<ng-container cdkColumnDef="delete">
+						<mat-header-cell *cdkHeaderCellDef></mat-header-cell>
+						<mat-cell *cdkCellDef="let row" matTooltip="Delete">
+							<mat-icon (click)="delete(row)" >delete</mat-icon>
+						</mat-cell>
+					</ng-container>
+			
+					<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+					<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+				</mat-table>
+			
+				<div class="example-no-results"
+							[style.display]="dataSource?.data.length == 0 ? '' : 'none'">
+					No results found
+				</div>
+				<mat-paginator #notepaginator
+											[pageIndex]="0"
+											[pageSize]="5">
+				</mat-paginator>
+			</mat-card-content>
+		</mat-card>	
+	</div>
+	<div class="col-5">
+		<mat-card>
+			<mat-card-header>
+				<h6>Add note for this lead:</h6>
+			</mat-card-header>
+			<mat-card-content>
+				<form class="note-form">
+					<mat-form-field class="notefield">
+						<textarea matInput placeholder="Note subject" matTextareaAutosize matAutosizeMinRows="1" id="noteTitle" [(ngModel)]="note.noteTitle" name="noteTitle"></textarea>
+					</mat-form-field>
+					<mat-form-field class="notefield">
+						<textarea matInput placeholder="Note content" matTextareaAutosize matAutosizeMinRows="5" id="data" [(ngModel)]="note.data" name="data"></textarea>
+					</mat-form-field>
+				</form>
+				<button mat-button (click)="addNote()" type="submit" color="primary">Add Note</button>
+			</mat-card-content>
+		</mat-card>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-7">
+		<mat-card>
+			<mat-card-header>
+				<h6>Lead Activity</h6>
+			</mat-card-header>
+			<mat-card-content>
+				<mat-progress-bar mode="buffer" *ngIf="activityDataSource.loading$ | async"></mat-progress-bar>
+				<mat-table #table [dataSource]="activityDataSource" matSort>
+		
+					<ng-container *ngFor="let display of displayActivitySettings" [matColumnDef]="display.columnDef">
+						<mat-header-cell *matHeaderCellDef>{{ display.header }}</mat-header-cell>
+						<mat-cell *matCellDef="let row">{{ display.cell(row) | formatCell: display.header }}</mat-cell>
+					</ng-container>
+		
+					<ng-container cdkColumnDef="editActivity">
+						<mat-header-cell *cdkHeaderCellDef></mat-header-cell>
+						<mat-cell *cdkCellDef="let row" matTooltip="Edit">
+							<mat-icon (click)="editActivity(row)" >edit</mat-icon>
+						</mat-cell>
+					</ng-container>
+		
+					<ng-container cdkColumnDef="deleteActivity">
+						<mat-header-cell *cdkHeaderCellDef></mat-header-cell>
+						<mat-cell *cdkCellDef="let row" matTooltip="Delete">
+							<mat-icon (click)="deleteActivity(row)" >delete</mat-icon>
+						</mat-cell>
+					</ng-container>
+		
+					<mat-header-row *matHeaderRowDef="displayedActivityColumns"></mat-header-row>
+					<mat-row *matRowDef="let row; columns: displayedActivityColumns;"></mat-row>
+				</mat-table>
+		
+				<div class="example-no-results" [style.display]="activityDataSource?.data.length == 0 ? '' : 'none'">
+					No results found
+				</div>
+		
+				<mat-paginator #activitypaginator [pageIndex]="0" [pageSize]="5">
+				</mat-paginator>
+			</mat-card-content>
+		</mat-card>
+	</div>
+	<div class="col-5">
+		<mat-card>
+			<mat-card-header>
+				<h6>Add activity for this lead:</h6>
+			</mat-card-header>
+			<mat-card-content>
+				<form class="activity-form">
+					<mat-form-field>
+						<mat-select placeholder="Activity" id="todayActivityId" [(ngModel)]="activity.todayActivityId" name="todayActivityId">
+							<mat-option *ngFor="let activity of activities" [value]="activity.id">{{ activity.label }}</mat-option>
+						</mat-select>
+					</mat-form-field>
+				</form>
+				<button mat-button (click)="addActivity()" type="submit" color="primary">Add Activity</button>
+			</mat-card-content>
+		</mat-card>
+	</div>
+</div>

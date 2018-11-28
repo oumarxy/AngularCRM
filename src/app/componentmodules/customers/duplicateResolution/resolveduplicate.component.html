@@ -1,0 +1,100 @@
+<mat-dialog-content>
+</mat-dialog-content>
+<div class="example-container">
+	<div class="example-loading-shade">
+		<!--mat-progress-bar mode="buffer" *ngIf="dataSource.loading$ | async"></mat-progress-bar-->
+	</div>
+	<h5>Compare the following leads and make edits where needed</h5>
+		<div class="mat-table" *ngIf="customer && customer2">
+			<div class="mat-header-row">
+				<div class="mat-header-cell"><b>Field</b></div>
+				<div class="mat-header-cell">Selected Customer</div>
+				<div class="mat-header-cell">Duplicate Customer {{ searchIndex + 1 }} of {{ duplicatesList.length }}</div>
+			</div>
+			<div class="mat-row">
+				<div class="mat-cell"><b>Created:</b></div>
+				<div class="mat-cell">{{ customer.creationTime | duplicateFormat }}</div>
+				<div class="mat-cell">{{ customer2.creationTime | duplicateFormat }}</div>
+			</div>
+			<div class="mat-row">
+				<div class="mat-cell"><b>First Name:</b></div>
+				<div class="mat-cell" ><mat-form-field><input matInput placeholder="{{ customer.firstName | duplicateFormat }}"></mat-form-field></div>
+				<div class="mat-cell" ><mat-form-field><input matInput placeholder="{{ customer2.firstName | duplicateFormat }}"></mat-form-field></div>
+			</div>
+			<div class="mat-row">
+				<div class="mat-cell"><b>Last Name:</b></div>
+				<div class="mat-cell"><mat-form-field><input matInput placeholder="{{ customer.lastName | duplicateFormat }}"></mat-form-field></div>
+				<div class="mat-cell"><mat-form-field><input matInput placeholder="{{ customer2.lastName | duplicateFormat }}"></mat-form-field></div>
+			</div>
+			<div class="mat-row">
+				<div class="mat-cell"><b>Phone 1:</b></div>
+				<div class="mat-cell"><mat-form-field><input matInput placeholder="{{ customer.phone1 | duplicateFormat }}"></mat-form-field></div>
+				<div class="mat-cell"><mat-form-field><input matInput placeholder="{{ customer2.phone1 | duplicateFormat }}"></mat-form-field></div>
+			</div>
+			<div class="mat-row">
+				<div class="mat-cell"><b>Phone 2:</b></div>
+				<div class="mat-cell"><mat-form-field><input matInput placeholder="{{ customer.phone2 | duplicateFormat  }}"></mat-form-field></div>
+				<div class="mat-cell"><mat-form-field><input matInput placeholder="{{ customer2.phone2 | duplicateFormat  }}"></mat-form-field></div>
+			</div>
+			<div class="mat-row">
+				<div class="mat-cell"><b>Phone 3:</b></div>
+				<div class="mat-cell"><mat-form-field><input matInput placeholder="{{ customer.phone3 | duplicateFormat }}"></mat-form-field></div>
+				<div class="mat-cell"><mat-form-field><input matInput placeholder="{{ customer2.phone3 | duplicateFormat }}"></mat-form-field></div>
+			</div>
+			<div class="mat-row">
+				<div class="mat-cell"><b>Phone 4:</b></div>
+				<div class="mat-cell"><mat-form-field><input matInput placeholder="{{ customer.phone4 | duplicateFormat }}"></mat-form-field></div>
+				<div class="mat-cell"><mat-form-field><input matInput placeholder="{{ customer2.phone4 | duplicateFormat }}"></mat-form-field></div>
+			</div>
+			<div class="mat-row">
+				<div class="mat-cell"><b>Best Time to Contact:</b></div>
+				<div class="mat-cell"><mat-form-field><input matInput placeholder="{{ customer.bestTimeToContact | duplicateFormat }}"></mat-form-field></div>
+				<div class="mat-cell"><mat-form-field><input matInput placeholder="{{ customer2.bestTimeToContact | duplicateFormat }}"></mat-form-field></div>
+			</div>
+			<div class="mat-row">
+				<div class="mat-cell"><b>Date of Birth:</b></div>
+				<div class="mat-cell"><mat-form-field><input matInput placeholder="{{ customer.birthDate | duplicateFormat }}"></mat-form-field></div>
+				<div class="mat-cell"><mat-form-field><input matInput placeholder="{{ customer2.birthDate | duplicateFormat }}"></mat-form-field></div>
+			</div>
+			<div class="mat-row"><div class="mat-cell"><b>Address:</b></div></div>
+			<div class="mat-row">
+				<div class="mat-cell"><b>Street:</b></div>
+				<div class="mat-cell"><mat-form-field><input matInput placeholder="{{ customer.street | duplicateFormat }}"></mat-form-field></div>
+				<div class="mat-cell"><mat-form-field><input matInput placeholder="{{ customer2.street | duplicateFormat }}"></mat-form-field></div>
+			</div>
+			<div class="mat-row">
+				<div class="mat-cell"><b>City:</b></div>
+				<div class="mat-cell"><mat-form-field><input matInput placeholder="{{ customer.city | duplicateFormat }}"></mat-form-field></div>
+				<div class="mat-cell"><mat-form-field><input matInput placeholder="{{ customer2.city | duplicateFormat }}"></mat-form-field></div>
+			</div>
+			<div class="mat-row">
+				<div class="mat-cell"><b>State:</b></div>
+				<div class="mat-cell"><mat-form-field><input matInput placeholder="{{ customer.state | duplicateFormat }}"></mat-form-field></div>
+				<div class="mat-cell"><mat-form-field><input matInput placeholder="{{ customer2.state | duplicateFormat }}"></mat-form-field></div>
+			</div>
+			<div class="mat-row">
+				<div class="mat-cell"><b>Zip:</b></div>
+				<div class="mat-cell"><mat-form-field><input matInput placeholder="{{ customer.zip | duplicateFormat }}"></mat-form-field></div>
+				<div class="mat-cell"><mat-form-field><input matInput placeholder="{{ customer2.zip | duplicateFormat }}"></mat-form-field></div>
+			</div>
+			<div class="mat-row">
+				<div class="mat-cell"><b>Country:</b></div>
+				<div class="mat-cell"><mat-form-field><input matInput placeholder="{{ customer.country | duplicateFormat }}"></mat-form-field></div>
+				<div class="mat-cell"><mat-form-field><input matInput placeholder="{{ customer2.country | duplicateFormat }}"></mat-form-field></div>
+			</div>
+			<div class="mat-row">
+				<div class="mat-cell"><b>Date of Last Lead Added:</b></div>
+				<div class="mat-cell">{{ customer.lastLeadAddedDate | duplicateFormat  }}</div>
+				<div class="mat-cell">{{ customer2.lastLeadAddedDate | duplicateFormat  }}</div>
+			</div>
+			
+		</div>
+</div>
+<mat-dialog-actions>
+	<!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+	<button mat-button [mat-dialog-close]="true" (click)="finished()">Close</button>
+	<button mat-raised-button color="primary" (click)="back()"><mat-icon>arrow_back</mat-icon>Previous</button>
+	<button mat-raised-button color="primary" (click)="mergeDuplicate()">Merge Duplicate</button>
+	<button mat-raised-button color="primary" (click)="markDuplicateAsUnique()">Mark Duplicate as Unique</button>
+	<button mat-raised-button color="primary" (click)="forward()">Next<mat-icon>arrow_forward</mat-icon></button>
+</mat-dialog-actions>

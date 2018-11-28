@@ -1,0 +1,46 @@
+<div class="container-fluid">
+    <div class="example-loading-shade">
+        <mat-progress-bar mode="buffer" *ngIf="dataSource.loading$ | async"></mat-progress-bar>
+    </div>
+    <div class="button-row">
+		<button mat-raised-button color="primary" (click)="openFilters()">Filters</button>
+		<button mat-raised-button color="primary" (click)="clearFilters()">Clear Filters</button>
+		<!--button mat-raised-button color="primary" (click)="addLead()">Add Lead</button>-->
+		<button mat-raised-button color="primary" (click)="assignLeads()">Assign Leads</button>
+		<button *ngIf="!myLeads()" mat-raised-button color="primary" (click)="showUnassignedLeads()">Show Unassigned Leads</button>
+		<!--button mat-raised-button color="disabled" (click)="exportLeads()">Export Leads</button>
+		<button mat-raised-button color="disabled" (click)="importLeads()">Import Leads</button-->
+		<button *ngIf="isAdmin()" mat-raised-button color="primary" (click)="deleteSelection()">Delete Selection</button>
+	</div>
+    <div class="example-header example-selection-header" *ngIf="!selection.isEmpty()">
+        {{selection.selected.length}} {{selection.selected.length == 1 ? 'lead' : 'leads'}} selected
+    </div>
+    <mat-table #table [dataSource]="dataSource" matSort>
+        <!-- Checkbox Column -->
+        <ng-container cdkColumnDef="select">
+            <mat-header-cell *cdkHeaderCellDef>
+                <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()">
+                </mat-checkbox>
+            </mat-header-cell>
+            <mat-cell *cdkCellDef="let row" matTooltip="Select">
+                <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)">
+                </mat-checkbox>
+            </mat-cell>
+        </ng-container>
+
+		<ng-container *ngFor="let display of displaySettings" [matColumnDef]="display.columnDef">
+			<mat-header-cell *matHeaderCellDef mat-sort-header>{{ display.header }}</mat-header-cell>
+			<mat-cell *matCellDef="let row" [ctStyleCell]="display.cell(row)" displayHeader="{{ display.header }}">{{ display.cell(row) | formatCell: display.header }}</mat-cell>
+		</ng-container>
+
+		<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+		<mat-row *matRowDef="let row; columns: displayedColumns;" matRipple class="element-row" (click)="openLeadDetail(row)"></mat-row>
+    </mat-table>
+
+    <div class="example-no-results" [style.display]="dataSource?.renderedData.length == 0 ? '' : 'none'">
+        No results found
+    </div>
+
+    <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+    </mat-paginator>
+</div>

@@ -1,0 +1,47 @@
+
+/**********************10/11/2018 updates***************/
+mat-radio-group {
+	margin-left: 20px;
+	margin-top: 10px;
+	display: block;
+}
+
+mat-radio-button {
+	margin-right: 10px;
+}
+
+mat-card {
+	margin-bottom: 20px;
+}
+
+mat-card-header {
+	margin-bottom: 10px;
+}
+
+mat-card-title {
+	font-size: 24px;
+}
+
+.mat-card-header .mat-card-title {
+	font-size: 24px;
+}
+
+.mat-input-container {
+	margin-top: 0px;
+	flex-grow: 1;
+	padding: 0px 10px;
+}
+
+.form-row {
+	display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+	margin-bottom: 10px;
+}
+
+.form-column {
+	padding: 0px 10px;
+	width: 33.3%;
+}
+

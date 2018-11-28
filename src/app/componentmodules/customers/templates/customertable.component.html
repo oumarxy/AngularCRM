@@ -1,0 +1,36 @@
+<div class="container-fluid">
+	<mat-progress-bar mode="buffer" *ngIf="dataSource.loading$ | async"></mat-progress-bar>
+	<div class="button-row">
+		<button #duplicateToggle (click)="showDuplicates()" mat-raised-button color="primary">Show Duplicates</button>
+	</div>
+	<div class="row">
+			<mat-input-container floatPlaceholder="never">
+				<input matInput #firstNameFilter placeholder="Search by first name">
+			</mat-input-container>
+			<mat-input-container floatPlaceholder="never">
+				<input matInput #lastNameFilter placeholder="Search by last name">
+			</mat-input-container>
+			<mat-input-container floatPlaceholder="never">
+				<input matInput #emailFilter placeholder="Search by email">
+			</mat-input-container>
+	</div>
+	<mat-table #table [dataSource]="dataSource" matSort>
+
+		<ng-container *ngFor="let display of displaySettings" [matColumnDef]="display.columnDef">
+			<mat-header-cell *matHeaderCellDef mat-sort-header>{{ display.header }}</mat-header-cell>
+			<mat-cell *matCellDef="let row" (duplicateEvent)="resolveDuplicate($event, row)" [ctStyleCell]="display.cell(row)" displayHeader="{{ display.header }}">{{ display.cell(row) | formatCell: display.header }}</mat-cell>
+		</ng-container>
+
+		<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+		<mat-row *matRowDef="let row; columns: displayedColumns;" matRipple (click)="openCustomerDetail(row)"></mat-row>
+	</mat-table>
+
+	<mat-paginator #paginator
+								[pageIndex]="0"
+								[pageSize]="10"
+								[pageSizeOptions]="[5, 10, 20]">
+	</mat-paginator>
+</div>
+
+
+	

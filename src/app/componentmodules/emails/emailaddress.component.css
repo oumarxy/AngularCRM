@@ -1,0 +1,89 @@
+/* Structure
+.container {
+	display: flex;
+	flex-direction: column;
+}
+
+.mat-column-edit, .mat-column-delete {
+	flex: 0 0 35px;
+}
+
+.mat-column-select {
+	max-width: 54px;
+}
+
+.mat-row:hover, .example-selected-row {
+	background: #f5f5f5;
+}
+
+.mat-row:active, .mat-row.example-selected-row {
+	background: #eaeaea;
+}
+
+.mat-table {
+	overflow: auto;
+	max-height: 500px;
+}
+
+
+h1 {
+    margin-bottom: 1.5rem;
+}
+
+.mat-table {
+	overflow: auto;
+	max-height: 500px;
+}
+
+.element-row {
+	position: relative;
+}
+
+.element-row:not(.expanded) {
+	cursor: pointer;
+}
+
+.element-row:not(.expanded):hover {
+	background: #f5f5f5;
+}
+
+.element-row.expanded {
+	border-bottom-color: transparent;
+}
+
+.example-container {
+	display: flex;
+	flex-direction: column;
+	max-height: 500px;
+	min-width: 300px;
+}
+	
+.mat-table {
+	overflow: auto;
+	max-height: 500px;
+}
+
+.element-row {
+	position: relative;
+}
+
+.element-row:not(.expanded) {
+	cursor: pointer;
+}
+
+.element-row:not(.expanded):hover {
+	background: #f5f5f5;
+}
+
+.element-row.expanded {
+	border-bottom-color: transparent;
+}
+
+.mat-icon {
+	transition: background .4s cubic-bezier(.25,.8,.25,1),box-shadow 280ms cubic-bezier(.4,0,.2,1);
+    cursor: pointer;
+}*/
+
+.mat-column-edit, .mat-column-delete {
+	flex: 0 0 30px;
+}

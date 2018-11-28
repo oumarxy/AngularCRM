@@ -1,0 +1,58 @@
+<mat-dialog-content>
+    <div class="row">
+        <div class="col-6">
+            <h5>Select which of your leads this document will be assigned to</h5>
+            <div class="example-loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
+                <mat-progress-bar mode="buffer" *ngIf="dataSource.loading$ | async"></mat-progress-bar>
+            </div>
+            <mat-table #table [dataSource]="dataSource" matSort>
+                <ng-container *ngFor="let display of displaySettings" [matColumnDef]="display.columnDef">
+                    <mat-header-cell *matHeaderCellDef>{{ display.header }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" [ctStyleCell]="display.cell(row)" displayHeader="{{ display.header }}">{{ display.cell(row) | formatCell: display.header }}</mat-cell>
+                </ng-container>
+                
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectRow(row)"></mat-row>
+            </mat-table>
+            <div class="example-no-results" [style.display]="dataSource?.renderedData.length == 0 ? '' : 'none'">
+                No results found
+            </div>
+            <mat-paginator #paginator   [length]="resultsLength"
+                                        [pageIndex]="0"
+                                        [pageSize]="10">
+            </mat-paginator>
+        </div>
+        <div class="col-6">
+            <iframe #documentDisplay></iframe>
+        </div>
+    </div>
+        
+    <div class="row tableDetails">
+        <div class="col-6">
+            <h6>File properties</h6>
+            <div class="subinfo"> 
+                <p><b>File name:</b><span>{{ doc.name }}</span></p>
+                <p><b>Content type:</b><span>{{ doc.contentType }}</span></p>
+                <p><b>File size:</b><span>{{ doc.size }}</span></p>
+                <p><b>Modified:</b><span>{{ doc.lastModifiedDateTime }}</span></p>    
+            </div>
+            <!--img [src]="showPage"/-->
+        </div>
+        <div class="col-6" *ngIf="isLeadSelected()">
+            <h6>Selected Lead information</h6>
+            <div class="subinfo">
+                <p><b>First name:</b><span>{{ selectedLead.firstName }}</span></p>
+                <p><b>Last name:</b><span>{{ selectedLead.lastName }}</span></p>
+                <p><b>Email:</b><span>{{ selectedLead.emailAddress }}</span></p>
+                <p><b>State:</b><span>{{ selectedLead.state }}</span></p>
+                <p><b>Lead status:</b><span>{{ selectedLead.leadStatusId }}</span></p>
+                <p><b>Last contacted:</b><span>{{ selectedLead.lastContactDate }}</span></p>
+            </div>
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+    <button mat-button [mat-dialog-close]="true" (click)="savePDF()" type="submit" color="primary">Save File</button>
+</mat-dialog-actions>

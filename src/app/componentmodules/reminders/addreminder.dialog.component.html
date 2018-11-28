@@ -1,0 +1,48 @@
+<mat-dialog-content>
+	<h5>New Reminder</h5>
+	<form #addReminderForm="ngForm">
+		<mat-form-field class="inputField">
+			<input matInput placeholder="Reminder Title" id="reminderTitle" [(ngModel)]="reminder.reminderTitle" name="reminderTitle">
+		</mat-form-field>
+		<mat-form-field  class="inputField">
+			<textarea 
+				matInput
+				placeholder="Reminder Details"
+				id="reminderDetails"
+				[(ngModel)]="reminder.reminderDetails"
+				name="reminderDetails"
+				matTextareaAutosize matAutosizeMinRows="2">
+			</textarea>
+		</mat-form-field>
+		<mat-form-field  class="inputField">
+			<input matInput [matDatepicker]="picker" [(ngModel)]="reminder.reminderDate" placeholder="Reminder date" id="reminderDate" name="reminderDate">
+			<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+			<mat-datepicker #picker></mat-datepicker>
+		</mat-form-field>
+		<mat-form-field  class="inputField">
+			<mat-select placeholder="Hour" id="hour" [(ngModel)]="timeInput.hour" name="hour">
+			  <mat-option *ngFor="let hour of hours" [value]="hour">
+				{{ hour }}
+			  </mat-option>
+			</mat-select>
+		  </mat-form-field>
+		  <mat-form-field  class="inputField">
+			<mat-select placeholder="Minute" id="minute" [(ngModel)]="timeInput.minute" name="minute">
+			  <mat-option *ngFor="let minute of minutes" [value]="minute">
+				{{ minute }}
+			  </mat-option>
+			</mat-select>
+		  </mat-form-field>
+		  <mat-form-field  class="inputField">
+			<mat-select placeholder="AM" id="cycle" [(ngModel)]="timeInput.cycle" name="cycle">
+			  <mat-option *ngFor="let cycle of cycles" [value]="cycle">
+				{{ cycle }}
+			  </mat-option>
+			</mat-select>
+		  </mat-form-field>
+	</form>
+</mat-dialog-content>
+<mat-dialog-actions>
+	<button mat-button mat-dialog-close>Cancel</button>
+	<button mat-button [mat-dialog-close]="true" (click)="addReminder()" type="submit" color="primary">Set Reminder</button>
+</mat-dialog-actions>

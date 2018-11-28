@@ -1,0 +1,22 @@
+<div class="container-fluid">
+    <div class="page-header">
+        <h3>{{ currentUser.userName }}'s Dashboard</h3>
+    </div>
+    <mat-tab-group>
+        <mat-tab label="My Leads">
+            <app-myleadstable></app-myleadstable>
+		</mat-tab>
+		<mat-tab label="Add Lead">
+			<app-addlead></app-addlead>
+        </mat-tab>
+        <mat-tab label="My Policies">
+            <app-mypolicydatabase></app-mypolicydatabase>
+        </mat-tab>
+        <mat-tab label="Reminders">
+            <app-myreminderscomponent></app-myreminderscomponent>
+        </mat-tab>
+        <mat-tab label="My Settings">
+            <app-myuserpage></app-myuserpage>
+        </mat-tab>
+    </mat-tab-group>
+</div>

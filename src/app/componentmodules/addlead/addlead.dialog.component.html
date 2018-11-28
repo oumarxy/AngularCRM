@@ -1,0 +1,215 @@
+<div *ngIf="dataLoaded" class="container">
+	<form #addLeadForm="ngForm">
+		<div class="col-6">
+			<mat-card class="card">
+				<mat-card-header class="card-header">
+					<mat-card-title><mat-icon>list_alt</mat-icon><span>Customer information</span></mat-card-title>
+				</mat-card-header>
+				<mat-card-content class="content-detail">
+					<mat-form-field>
+						<input matInput placeholder="Customer First Name" id="firstName" [(ngModel)]="customer.firstName" name="firstName">
+					</mat-form-field>
+					<mat-form-field>
+						<input matInput placeholder="Customer Last Name" id="lastName" [(ngModel)]="customer.lastName" name="lastName">
+					</mat-form-field>
+					<mat-form-field>
+						<input matInput placeholder="Customer Email" id="email" [formControl]="email" [(ngModel)]="customer.email" name="email" required>
+						<mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+					</mat-form-field>
+					<mat-form-field>
+						<input matInput placeholder="Phone 1" id="phone1" [(ngModel)]="customer.phone1" name="phone1">
+					</mat-form-field>
+					<mat-form-field>
+						<mat-select placeholder="Phone 1 Type" id="phone1Type" [(ngModel)]="customer.phone1TypeId" name="phone1Type">
+							<mat-option *ngFor="let phoneType of phoneTypes" [value]="phoneType.id">{{ phoneType.label }}</mat-option>
+						</mat-select>
+					</mat-form-field>
+					<mat-form-field>
+						<input matInput placeholder="Phone 2 Type" id="phone2" [(ngModel)]="customer.phone2" name="phone2">
+					</mat-form-field>
+					<mat-form-field>
+						<mat-select placeholder="Phone 2 Type" id="phone2Type" [(ngModel)]="customer.phone2TypeId" name="phone2Type">
+							<mat-option *ngFor="let phoneType of phoneTypes" [value]="phoneType.id">{{ phoneType.label }}</mat-option>
+						</mat-select>
+					</mat-form-field>
+					<mat-form-field>
+						<input matInput placeholder="Phone 3 Type" id="phone3" [(ngModel)]="customer.phone3" name="phone3">
+					</mat-form-field>
+					<mat-form-field>
+						<mat-select placeholder="Phone 3 Type" id="phone3Type" [(ngModel)]="customer.phone3TypeId" name="phone3Type">
+							<mat-option *ngFor="let phoneType of phoneTypes" [value]="phoneType.id">{{ phoneType.label }}</mat-option>
+						</mat-select>
+					</mat-form-field>
+					<mat-form-field>
+						<input matInput placeholder="Phone 4 Type" id="phone4" [(ngModel)]="customer.phone4" name="phone4">
+					</mat-form-field>
+					<mat-form-field>
+						<mat-select placeholder="Phone 4 Type" id="phone4Type" [(ngModel)]="customer.phone4TypeId" name="phone4Type">
+							<mat-option *ngFor="let phoneType of phoneTypes" [value]="phoneType.id">{{ phoneType.label }}</mat-option>
+						</mat-select>
+					</mat-form-field>
+					<mat-form-field>
+						<input matInput [matDatepicker]="picker" [(ngModel)]="customer.birthDate" placeholder="Date of birth" id="birthdate" name="birthdate">
+						<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+						<mat-datepicker #picker></mat-datepicker>
+					</mat-form-field>
+					<mat-form-field>
+						<input matInput placeholder="Best Time to Contact" id="bestTimeToContact" [(ngModel)]="customer.bestTimeToContact" name="bestTimeToContact">
+					</mat-form-field>
+					<mat-form-field>
+						<input matInput placeholder="Customer Street" id="street" [(ngModel)]="customer.street" name="street">
+					</mat-form-field>
+					<mat-form-field>
+						<input matInput placeholder="Customer City" id="city" [(ngModel)]="customer.city" name="city">
+					</mat-form-field>
+					<mat-form-field>
+						<mat-select placeholder="Customer State" id="state" [(ngModel)]="customer.stateId" name="state">
+							<mat-option *ngFor="let state of states" [value]="state.id">{{ state.label }}</mat-option>
+						</mat-select>
+					</mat-form-field>
+					<mat-form-field>
+						<input matInput placeholder="Customer Zip Code" id="zip" [(ngModel)]="customer.zip" name="zip">
+					</mat-form-field>
+					<mat-form-field>
+						<input matInput placeholder="Customer Country" id="country" [(ngModel)]="customer.country" name="country">
+					</mat-form-field>
+				</mat-card-content>
+			</mat-card>
+		</div>
+		<div class="col-6">
+			<mat-card class="card">
+				<mat-card-header class="card-header">
+					<mat-card-title><mat-icon>list_alt</mat-icon><span>Lead information</span></mat-card-title>
+				</mat-card-header>
+				<mat-card-content class="content-detail">
+					<mat-form-field>
+						<mat-select placeholder="Sales Agent" id="salesAgent" [(ngModel)]="insuranceLead.userId" name="salesAgent" optional>
+							<mat-option *ngFor="let user of users" [value]="user.id">{{ user.userName }}</mat-option>
+						</mat-select>
+					</mat-form-field>
+					<mat-form-field>
+							<mat-select placeholder="Lead Source" id="leadSourceId" [(ngModel)]="insuranceLead.leadSourceId" name="leadSourceId">
+								<mat-option *ngFor="let source of leadSources" [value]="source.id">{{ source.label }}</mat-option>
+							</mat-select>
+						</mat-form-field>
+					<mat-form-field>
+						<mat-select placeholder="Lead Status" id="leadStatusId" [(ngModel)]="insuranceLead.leadStatusId" name="leadStatusId">
+							<mat-option *ngFor="let leadStat of leadStatus" [value]="leadStat.id">{{ leadStat.label }}</mat-option>
+						</mat-select>
+					</mat-form-field>
+					<mat-form-field>
+						<mat-select placeholder="State" id="state" [(ngModel)]="insuranceLead.stateId" name="state">
+							<mat-option *ngFor="let state of states" [value]="state.id">{{ state.label }}</mat-option>
+						</mat-select>
+					</mat-form-field>
+					<mat-form-field>
+						<input matInput placeholder="Lead Zip Code" id="zip" [(ngModel)]="insuranceLead.zipCode" name="zip">
+					</mat-form-field>
+					<mat-form-field>
+						<input matInput placeholder="Lead County Name" id="countyName" [(ngModel)]="insuranceLead.countyName" name="countyName">
+					</mat-form-field>
+					<mat-form-field>
+						<input matInput placeholder="Length of Unit" id="length" [(ngModel)]="insuranceLead.length" name="length">
+					</mat-form-field>
+					<mat-form-field>
+						<input matInput placeholder="Width of Unit" id="width" [(ngModel)]="insuranceLead.width" name="width">
+					</mat-form-field>
+					<mat-form-field>
+						<input matInput placeholder="Sq Ft. of Unit" id="sqFeet" [(ngModel)]="insuranceLead.sqFeet" name="sqFeet">
+					</mat-form-field>
+					<mat-form-field>
+						<input matInput placeholder="Year of Home Manufacture" id="yearHomeManufactured" [(ngModel)]="insuranceLead.yearHomeManufactured" name="yearHomeManufactured">
+					</mat-form-field>
+					<mat-form-field>
+						<input matInput placeholder="Home Use" id="homeUse" [(ngModel)]="insuranceLead.homeUse" name="homeUse">
+					</mat-form-field>
+					<mat-form-field>
+						<mat-select placeholder="Home Type" id="homeTypeId" [(ngModel)]="insuranceLead.homeTypeId" name="homeTypeId">
+							<mat-option *ngFor="let homeType of homeTypes" [value]="homeType.id">{{ homeType.label }}</mat-option>
+						</mat-select>
+					</mat-form-field>
+					<mat-form-field>
+						<mat-select placeholder="Siding Type" id="sidingTypeId" [(ngModel)]="insuranceLead.sidingTypeId" name="sidingTypeId">
+							<mat-option *ngFor="let sidingType of sidingTypes" [value]="sidingType.id">{{ sidingType.label }}</mat-option>
+						</mat-select>
+					</mat-form-field>
+					<mat-form-field>
+						<mat-select placeholder="Roof Type" id="roofTypeId" [(ngModel)]="insuranceLead.roofTypeId" name="roofTypeId">
+							<mat-option *ngFor="let roofType of roofTypes" [value]="roofType.id">{{ roofType.label }}</mat-option>
+						</mat-select>
+					</mat-form-field>
+					<mat-form-field>
+						<mat-select placeholder="Community Park?" id="communityPark" [(ngModel)]="insuranceLead.communityPark" name="communityPark">
+								<mat-option value=true>True</mat-option>
+								<mat-option value=false>False</mat-option>
+						</mat-select>
+					</mat-form-field>
+					<mat-form-field>
+						<mat-select placeholder="Within Incorporated City Limits?" id="withinIncorporatedCityLimits" [(ngModel)]="insuranceLead.withinIncorporatedCityLimits" name="withinIncorporatedCityLimits">
+								<mat-option value=true>True</mat-option>
+								<mat-option value=false>False</mat-option>
+						</mat-select>
+					</mat-form-field>
+					<mat-form-field>
+						<mat-select placeholder="More than 25 Spaces in Park?" id="moreThanTwentyFiveSpacesInPark" [(ngModel)]="insuranceLead.moreThanTwentyFiveSpacesInPark" name="moreThanTwentyFiveSpacesInPark">
+								<mat-option value=true>True</mat-option>
+								<mat-option value=false>False</mat-option>
+						</mat-select>
+					</mat-form-field>
+					<mat-form-field>
+						<mat-select placeholder="Tied Down?" id="tiedDown" [(ngModel)]="insuranceLead.tiedDown" name="tiedDown">
+								<mat-option value=true>True</mat-option>
+								<mat-option value=false>False</mat-option>
+						</mat-select>
+					</mat-form-field>
+					<mat-form-field>
+						<mat-select placeholder="Fully Skirted?" id="fullySkirted" [(ngModel)]="insuranceLead.fullySkirted" name="fullySkirted">
+								<mat-option value=true>True</mat-option>
+								<mat-option value=false>False</mat-option>
+						</mat-select>
+					</mat-form-field>
+					
+			
+					<mat-form-field>
+						<input matInput [matDatepicker]="picker2" [(ngModel)]="insuranceLead.estPolicyStartDate" placeholder="Estimated Policy Start Date" id="estPolicyStartDate" name="estPolicyStartDate">
+						<mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+						<mat-datepicker #picker2></mat-datepicker>
+					</mat-form-field>
+					<mat-form-field>
+						<input matInput placeholder="Estimated Home Value" id="estHomeValue" [(ngModel)]="insuranceLead.estHomeValue" name="estHomeValue">
+					</mat-form-field>
+					<mat-form-field>
+						<input matInput placeholder="Estimated Value of Home Contents" id="estHomeContentsValue" [(ngModel)]="insuranceLead.estHomeContentsValue" name="estHomeContentsValue">
+					</mat-form-field>
+					<mat-form-field>
+						<mat-select placeholder="Insure Personal Items?" id="insurePersonalItems" [(ngModel)]="insuranceLead.insurePersonalItems" name="insurePersonalItems">
+								<mat-option value=true>True</mat-option>
+								<mat-option value=false>False</mat-option>
+						</mat-select>
+					</mat-form-field>
+			
+					<mat-form-field>
+						<mat-select placeholder="Referral" id="referralId" [(ngModel)]="insuranceLead.referralId" name="referralId">
+							<mat-option *ngFor="let referral of referrals" [value]="referral.id">{{ referral.label }}</mat-option>
+						</mat-select>
+					</mat-form-field>
+				</mat-card-content>
+			</mat-card>
+		</div>
+	</form>
+
+		
+
+	<!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+	<button mat-raised-button (click)="submitLead()" type="submit" color="primary">Add {{ refdata }}</button>
+	<div *ngIf="submitSuccessful">
+		<div class="alert alert-success">
+			{{ message }}
+		</div>
+	</div>
+	<div *ngIf="submitFailed">
+		<div class="alert alert-danger">
+			{{ message }}
+		</div>
+	</div>
+</div>

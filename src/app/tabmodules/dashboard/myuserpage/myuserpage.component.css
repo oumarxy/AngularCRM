@@ -1,0 +1,17 @@
+.container {
+	margin-top: 64px;
+}
+
+.row span {
+	float:right;
+}
+
+.row p {
+	border-top: 1px solid rgba(0,0,0,.12);
+	padding: 5px 0px;
+	margin: 0px;
+}
+
+.row p:hover {
+	background: #f5f5f5;
+}

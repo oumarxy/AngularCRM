@@ -1,0 +1,23 @@
+<div class="container-fluid">
+	<mat-progress-bar mode="buffer" *ngIf="dataSource.loading$ | async"></mat-progress-bar>
+	<mat-table #table [dataSource]="dataSource" matSort>
+		<ng-container *ngFor="let display of displaySettings" [matColumnDef]="display.columnDef">
+			<mat-header-cell *matHeaderCellDef>{{ display.header }}</mat-header-cell>
+			<mat-cell *matCellDef="let row">{{ display.cell(row) }}</mat-cell>
+		</ng-container>
+
+		<ng-container cdkColumnDef="view">
+			<mat-header-cell *cdkHeaderCellDef></mat-header-cell>
+			<mat-cell *cdkCellDef="let row">
+				<mat-icon (click)="view(row)">pageview</mat-icon>
+			</mat-cell>
+		</ng-container>
+
+		<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+		<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+	</mat-table>
+	<mat-paginator #paginator [pageIndex]="0" [pageSize]="10"></mat-paginator>
+</div>
+    
+    
+        

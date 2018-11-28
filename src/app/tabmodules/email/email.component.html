@@ -1,0 +1,109 @@
+<div class="container">
+    <mat-progress-bar mode="buffer" *ngIf="loading$ | async"></mat-progress-bar>
+    <div class="ms-NavBar">
+        <ul class="ms-NavBar-items">
+            <li class="navbar-header">Insurance Email Client</li>
+            <li class="ms-NavBar-item ms-Navbar-item--left" *ngIf="isAuthenticated()">Current user: {{ displayName }}</li>
+            <li class="ms-NavBar-item ms-NavBar-item--right" *ngIf="isAuthenticated()" (click)="logout()"><i class="ms-Icon ms-Icon--x"></i> Disconnect</li>
+        </ul>
+    </div>
+        
+    
+    <div *ngIf="!isAuthenticated()">
+        <p class="ms-font-xl">Use the button below to login to Office 365.</p>
+        <button class="ms-Button" (click)="login()">
+            <span class="ms-Button-label">Connect</span>
+        </button>
+    </div>
+    
+    <div *ngIf="isAuthenticated()">
+        <mat-tab-group>
+            <mat-tab label="View Emails">
+                <div class="emailRow">
+                    <div class="col-4">
+                        <h5 class="ms-fontWeight-semibold emailHeader">Inbox</h5>
+                        <div class="inbox">
+                            <div *ngFor="let mail of inbox">
+                                <mat-card (click)="selectEmail(mail)">
+                                    <mat-card-header>
+                                        <mat-card-title>{{ mail.sender.emailAddress.name }}</mat-card-title>
+                                        <mat-card-subtitle>{{ mail.subject }}</mat-card-subtitle>
+                                        <mat-card-subtitle>{{ mail.sentDateTime | dateTime }}</mat-card-subtitle>
+                                        <mat-icon *ngIf="showAttachmentIcon(mail)">attachment</mat-icon>
+                                    </mat-card-header>
+                                </mat-card>
+                            </div>
+                        </div>
+                        <div class="emailRow">
+                            <button mat-raised-button color="primary" (click)="back()"><mat-icon>arrow_back</mat-icon>Previous</button>
+                            <button mat-raised-button color="primary" (click)="forward()">Next<mat-icon>arrow_forward</mat-icon></button>
+                        </div>  
+                    </div>
+                    <div class="col-8">
+                        <div *ngIf="isSelected()">
+                            <div id="sendTo" class="ms-TextField">
+                                <label class="ms-Label">From: <b>{{ selectedEmail.from.emailAddress.name }}</b> {{ selectedEmail.from.emailAddress.address }}</label>
+                            </div>
+                            <div id="subject" class="ms-TextField">
+                                <label class="ms-Label">Sent: {{ selectedEmail.sentDateTime }}</label>
+                            </div>
+                            <div id="subject" class="ms-TextField">
+                                <label class="ms-Label">Subject: {{ selectedEmail.subject }}</label>
+                            </div>
+                            <div id="content" class="ms-TextField-multiline">
+                                <label class="ms-Label">Content:</label>
+                                <angular-tinymce [(ngModel)]="selectedEmail.body.content" placeholder="Content" name="content"></angular-tinymce>
+                            </div>
+                            <div class="row" *ngIf="documentsAttached()">
+                                <div *ngFor="let doc of attachments">
+                                    <mat-card (click)="openPDFMapper(doc)">
+                                        <div mat-card-avatar>
+                                            <mat-icon>attachment</mat-icon>
+                                        </div>
+                                        <mat-card-title>Attachments: {{ doc.name }}</mat-card-title>
+                                        <mat-card-subtitle>Size: {{ doc.size }}</mat-card-subtitle>
+                                    </mat-card>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mat-tab>
+            <mat-tab label="Compose Email">
+                <div class="emailRow">
+                    <div class="col-8">
+                        <div id="sendTo" class="ms-TextField">
+                            <label class="ms-Label">To:</label>
+                            <input #mailTo placeholder="Who is this going to?" class="ms-TextField-field">
+                        </div>
+                        <div id="cc" class="ms-TextField">
+                            <label class="ms-Label">Cc:</label>
+                            <input #Cc placeholder="Anyone else?" class="ms-TextField-field">
+                        </div>
+                        <div id="subject" class="ms-TextField">
+                            <label class="ms-Label">Subject</label>
+                            <input #mailSubject placeholder="What is this about?" class="ms-TextField-field">
+                        </div>
+                        <div id="content" class="ms-TextField-multiline">
+                            <label class="ms-Label">Content</label>
+							<textarea #mailContent placeholder="What would you like to say?" class="ms-TextField-field"></textarea>
+							<!--angular-tinymce #mailContent placeholder="Content" name="content"></angular-tinymce-->
+                        </div>
+                        <!--button class="ms-Button" (click)="sendMail(mailTo.value, Cc.value, mailSubject.value, mailContent.value)">
+                            <span class="ms-Button-label">Send mail<mat-icon></mat-icon></span>
+                        </button-->
+                        <button mat-raised-button color="primary" (click)="sendMail(mailTo.value, Cc.value, mailSubject.value, mailContent.value)">
+                            Send mail <mat-icon>send</mat-icon>
+                        </button>
+                        <div *ngIf="requestSuccess && requestFinished">
+                            <p class="ms-font-m ms-fontColor-green">Successfully sent an email to {{ emailAddressSent }}!</p>
+                        </div>
+                        <div *ngIf="!requestSuccess && requestFinished">
+                            <p class="ms-font-m ms-fontColor-redDark">Something went wrong, couldn't send an email.</p>
+                        </div>
+                    </div>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div>

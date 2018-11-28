@@ -1,0 +1,144 @@
+<mat-dialog-content>
+	<form #customerForm="ngForm">
+		<div class="col-12">
+			<mat-card class="card">
+				<mat-card-header class="card-header">
+					<mat-card-title><mat-icon>list_alt</mat-icon><span>Customer Details</span></mat-card-title>
+				</mat-card-header>
+				<mat-card-content class="content-detail">
+					<div><b>First Name</b>
+						<mat-form-field>
+							<input matInput [value]="customer.firstName" id="firstName" [(ngModel)]="customer.firstName" name="firstName">
+						</mat-form-field>
+					</div>
+					<div><b>Last Name</b>
+						<mat-form-field>
+							<input matInput [value]="customer.lastName" id="lastName" [(ngModel)]="customer.lastName" name="lastName">
+						</mat-form-field>
+					</div>
+					<div><b>Other Name</b>
+						<mat-form-field>
+							<input matInput [value]="customer.otherName" id="otherName" [(ngModel)]="customer.otherName" name="otherName">
+						</mat-form-field>
+					</div>
+					<div><b>Date of Birth</b>
+						<mat-form-field>
+							<input matInput [matDatepicker]="applicantDOB" [value]="customer.birthDate" id="birthdate" [(ngModel)]="customer.birthDate" name="birthdate">
+							<mat-datepicker-toggle matSuffix [for]="applicantDOB"></mat-datepicker-toggle>
+							<mat-datepicker #applicantDOB></mat-datepicker>
+						</mat-form-field>
+					</div>
+					<div><b>Possible Duplicate?</b>
+					<mat-form-field>
+						<mat-select [value]="customer.possibleDuplicate" id="possibleDuplicate" [(ngModel)]="customer.possibleDuplicate" name="possibleDuplicate">
+								<mat-option value=true>True</mat-option>
+								<mat-option value=false>False</mat-option>
+						</mat-select>
+					</mat-form-field>
+				</div>
+				</mat-card-content>
+			</mat-card>
+			<mat-card class="card">
+				<mat-card-header class="card-header">
+					<mat-card-title><mat-icon>local_phone</mat-icon><span>Phone Book</span></mat-card-title>
+				</mat-card-header>
+				<mat-card-content class="content-detail">
+					<div><b>Phone 1</b>
+						<mat-form-field hintLabel="#">
+							<input matInput [value]="customer.phone1" id="phone1" [(ngModel)]="customer.phone1" name="phone1">
+						</mat-form-field>
+						<mat-form-field hintLabel="type">
+							<mat-select [value]="customer.phone1TypeId" id="phone1TypeId" [(ngModel)]="customer.phone1TypeId" name="phone1TypeId">
+								<mat-option *ngFor="let phone of phoneTypes" [value]="phone">{{ phone }}</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+					<div><b>Phone 2</b>
+						<mat-form-field hintLabel="#">
+							<input matInput [value]="customer.phone2" id="phone2" [(ngModel)]="customer.phone2" name="phone2">
+						</mat-form-field>
+						<mat-form-field hintLabel="type">
+							<mat-select [value]="customer.phone2TypeId" id="phone2TypeId" [(ngModel)]="customer.phone2TypeId" name="phone2TypeId">
+								<mat-option *ngFor="let phone of phoneTypes" [value]="phone">{{ phone }}</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+					<div><b>Phone 3</b>
+						<mat-form-field hintLabel="#">
+							<input matInput [value]="customer.phone3" id="phone3" [(ngModel)]="customer.phone3" name="phone3">
+						</mat-form-field>
+						<mat-form-field hintLabel="type">
+							<mat-select [value]="customer.phone3TypeId" id="phone3TypeId" [(ngModel)]="customer.phone3TypeId" name="phone3TypeId">
+								<mat-option *ngFor="let phone of phoneTypes" [value]="phone">{{ phone }}</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+					<div><b>Phone 4</b>
+						<mat-form-field hintLabel="#">
+							<input matInput [value]="customer.phone4" id="phone4" [(ngModel)]="customer.phone4" name="phone4">
+						</mat-form-field>
+						<mat-form-field hintLabel="type">
+							<mat-select [value]="customer.phone4TypeId" id="phone4TypeId" [(ngModel)]="customer.phone4TypeId" name="phone4TypeId">
+								<mat-option *ngFor="let phone of phoneTypes" [value]="phone">{{ phone }}</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+					<div><b>Best time to contact?</b>
+						<mat-form-field>
+							<input matInput [value]="customer.bestTimeToContact" id="bestTimeToContact" [(ngModel)]="customer.bestTimeToContact" name="bestTimeToContact">
+						</mat-form-field>
+					</div>
+				</mat-card-content>
+			</mat-card>
+			<mat-card class="card">
+				<mat-card-header class="card-header">
+					<mat-card-title><mat-icon>mail_outline</mat-icon><span>Address</span></mat-card-title>
+				</mat-card-header>
+				<mat-card-content class="content-detail">
+					<mat-form-field hintLabel="Street">
+						<input matInput [value]="customer.street" id="street" [(ngModel)]="customer.street" name="street">
+					</mat-form-field>
+					<mat-form-field hintLabel="City">
+						<input matInput [value]="customer.city" id="city" [(ngModel)]="customer.city" name="city">
+					</mat-form-field>
+					<mat-form-field hintLabel="State">
+						<mat-select  placeholder="State" id="state" [(ngModel)]="customer.stateId" name="state">
+							<mat-option *ngFor="let state of states" [value]="state">{{ state }}</mat-option>
+						</mat-select>
+					</mat-form-field>
+					<mat-form-field hintLabel="Zip Code">
+						<input matInput [value]="customer.zip" id="zip" [(ngModel)]="customer.zip" name="zip">
+					</mat-form-field>
+					<mat-form-field hintLabel="Country">
+						<input matInput [value]="customer.country" id="country" [(ngModel)]="customer.country" name="country">
+					</mat-form-field>
+				</mat-card-content>
+			</mat-card>
+			<mat-card class="card">
+				<mat-card-header class="card-header">
+					<mat-card-title><mat-icon>mail_outline</mat-icon><span>Mailing Address</span></mat-card-title>
+				</mat-card-header>
+				<mat-card-content class="content-detail">
+					<mat-form-field hintLabel="Mailing Street">
+						<input matInput [value]="customer.mailingStreet" id="mailingStreet" [(ngModel)]="customer.mailingStreet" name="mailingStreet">
+					</mat-form-field>
+					<mat-form-field hintLabel="Mailing City">
+						<input matInput [value]="customer.mailingCity" id="mailingCity" [(ngModel)]="customer.mailingCity" name="mailingCity">
+					</mat-form-field>
+					<mat-form-field hintLabel="Mailing State">
+						<mat-select placeholder="State" id="state" [(ngModel)]="customer.mailingStateId" name="state">
+							<mat-option *ngFor="let state of states" [value]="state">{{ state }}</mat-option>
+						</mat-select>
+					</mat-form-field>
+					<mat-form-field hintLabel="Mailing Zip Code">
+						<input matInput [value]="customer.mailingZip" id="mailingZip" [(ngModel)]="customer.mailingZip" name="mailingZip">
+					</mat-form-field>
+				</mat-card-content>
+			</mat-card>
+		</div>
+	</form>
+</mat-dialog-content>
+<mat-dialog-actions>
+	<button mat-button mat-dialog-close>Cancel</button>
+	<button mat-button [mat-dialog-close]="true" (click)="submitEdits()">Save Changes</button>
+</mat-dialog-actions>

@@ -1,0 +1,17 @@
+
+<div class="row">
+	<div class="col-6 stat-half">
+		<mat-form-field style="min-width: 150px; max-width: 400px; width: 100%;" >
+			<mat-label>Type number of leads to view</mat-label>
+			<input #leadSelect matInput placeholder="{{ selected }}" value="selected" type="number">
+		</mat-form-field>
+		<button mat-raised-button (click)="searchData(leadSelect.value)" color="primary">Search Data</button>
+
+		<div style="margin-bottom: 60px;">
+			<canvas id="canvas">{{ chart }}</canvas>
+		</div>
+	</div>
+	<div class="col-6 stat-half">
+		<canvas id="barcanvas">{{ barchart }}</canvas>
+	</div>
+</div>

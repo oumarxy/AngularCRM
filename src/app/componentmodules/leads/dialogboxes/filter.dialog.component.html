@@ -1,0 +1,112 @@
+<p>Select fields to filter leads</p>
+<mat-dialog-content>
+	<form *ngIf="dataLoaded" #filterForm="ngForm">
+			<mat-form-field>
+				<input matInput placeholder="First Name" id="firstName" [(ngModel)]="customerFilters.firstName" name="firstName">
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput placeholder="Last Name" id="lastName" [(ngModel)]="customerFilters.lastName" name="lastName">
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput placeholder="Phone Number 1" id="phone1" [(ngModel)]="customerFilters.phone1" name="phone1">
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput placeholder="Phone Number 2" id="phone2" [(ngModel)]="customerFilters.phone2" name="phone2">
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput placeholder="Phone Number 3" id="phone3" [(ngModel)]="customerFilters.phone3" name="phone3">
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput placeholder="Phone Number 4" id="phone4" [(ngModel)]="customerFilters.phone4" name="phone4">
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput placeholder="Email" id="email" [(ngModel)]="emailAddress" name="email">
+			</mat-form-field>
+			<mat-form-field>
+				<mat-select placeholder="Sales Agent" id="salesAgent" [(ngModel)]="insuranceLeadFilters.userId" name="salesAgent">
+					<mat-option *ngFor="let user of users" [value]="user.id">{{ user.userName }}</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-select placeholder="Lead Source" id="leadSourceId" [(ngModel)]="insuranceLeadFilters.leadSourceId" name="leadSourceId">
+					<mat-option *ngFor="let leadSource of leadSources" [value]="leadSource.id">{{ leadSource.label }}</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-select placeholder="Lead Status" id="leadStatusId" [(ngModel)]="insuranceLeadFilters.leadStatusId" name="leadStatusId">
+					<mat-option *ngFor="let leadStat of leadStatus" [value]="leadStat.id">{{ leadStat.label }}</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput [matDatepicker]="picker" [(ngModel)]="insuranceLeadFilters.lastContactDate" placeholder="Last Contact Date" id="lastContactDate" name="lastContactDate">
+				<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+				<mat-datepicker #picker></mat-datepicker>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-select placeholder="State" id="state" [(ngModel)]="insuranceLeadFilters.stateId" name="state">
+					<mat-option *ngFor="let state of states" [value]="state.id">{{ state.label }}</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-select placeholder="Home Type" id="homeTypeId" [(ngModel)]="insuranceLeadFilters.homeTypeId" name="homeTypeId">
+					<mat-option *ngFor="let homeType of homeTypes" [value]="homeType.id">{{ homeType.label }}</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-select placeholder="Siding Type" id="sidingTypeId" [(ngModel)]="insuranceLeadFilters.sidingTypeId" name="sidingTypeId">
+					<mat-option *ngFor="let sidingType of sidingTypes" [value]="sidingType.id">{{ sidingType.label }}</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-select placeholder="Roof Type" id="roofTypeId" [(ngModel)]="insuranceLeadFilters.roofTypeId" name="roofTypeId">
+					<mat-option *ngFor="let roofType of roofTypes" [value]="roofType.id">{{ roofType.label }}</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-select placeholder="Community park?" id="communityPark" [(ngModel)]="insuranceLeadFilters.communityPark" name="communityPark">
+						<mat-option value=true>True</mat-option>
+						<mat-option value=false>False</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-select placeholder="Within five miles of fire department?" id="withinFiveMilesOfFireDepartment" [(ngModel)]="insuranceLeadFilters.withinFiveMilesOfFireDepartment" name="withinFiveMilesOfFireDepartment">
+						<mat-option value=true>True</mat-option>
+						<mat-option value=false>False</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-select placeholder="More than 25 spaces in park?" id="moreThanTwentyFiveSpacesInPark" [(ngModel)]="insuranceLeadFilters.moreThanTwentyFiveSpacesInPark" name="moreThanTwentyFiveSpacesInPark">
+						<mat-option value=true>True</mat-option>
+						<mat-option value=false>False</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-select placeholder="Tied down?" id="tiedDown" [(ngModel)]="insuranceLeadFilters.tiedDown" name="tiedDown">
+						<mat-option value=true>True</mat-option>
+						<mat-option value=false>False</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-select placeholder="Fully Skirted?" id="fullySkirted" [(ngModel)]="insuranceLeadFilters.fullySkirted" name="fullySkirted">
+						<mat-option value=true>True</mat-option>
+						<mat-option value=false>False</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-select placeholder="Insure Personal Items?" id="insurePersonalItems" [(ngModel)]="insuranceLeadFilters.insurePersonalItems" name="insurePersonalItems">
+						<mat-option value=true>True</mat-option>
+						<mat-option value=false>False</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-select placeholder="Deleted?" id="deleted" [(ngModel)]="insuranceLeadFilters.deleted" name="deleted">
+						<mat-option value=true>True</mat-option>
+						<mat-option value=false>False</mat-option>
+				</mat-select>
+			</mat-form-field>
+	</form>
+</mat-dialog-content>
+<mat-dialog-actions>
+	<button mat-button mat-dialog-close>Cancel</button>
+	<button mat-button [mat-dialog-close]="true" (click)="addFilters()" type="submit" color="primary">Add filters</button>
+</mat-dialog-actions>

@@ -1,0 +1,29 @@
+<h2 mat-dialog-title>Edit Selection</h2>
+<mat-dialog-content>Edit fields and then click on save</mat-dialog-content>
+<div class="example-container">
+    <form #emailTemplateForm="ngForm">
+        <mat-form-field hintLabel="Label">
+            <input matInput placeholder="{{ editEmailTemplate.label }}" id="label" [(ngModel)]="emailTemplate.label" name="label">
+        </mat-form-field>
+        <mat-form-field hintLabel="Website">
+            <input matInput placeholder="{{ editEmailTemplate.website }}" id="website" [(ngModel)]="emailTemplate.website" name="website">
+        </mat-form-field>
+        <mat-form-field hintLabel="From">
+            <input matInput placeholder="{{ editEmailTemplate.from }}" id="from" [(ngModel)]="emailTemplate.from" name="from">
+        </mat-form-field>
+        <mat-form-field hintLabel="Subject">
+            <input matInput placeholder="{{ editEmailTemplate.subject }}" id="subject" [(ngModel)]="emailTemplate.subject" name="subject">
+        </mat-form-field>
+        <mat-form-field class="leadSourceInput" hintLabel="LeadSourceId">
+            <input matInput placeholder="{{ editEmailTemplate.leadSourceId }}" id="leadSourceId" [(ngModel)]="emailTemplate.leadSourceId" name="leadSourceId">
+        </mat-form-field>
+        <div hintLabel="Content" class="container-fluid">
+            <angular-tinymce [(ngModel)]="emailTemplate.content" name="content"></angular-tinymce>
+        </div>
+    </form>
+</div>
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+    <button mat-button [mat-dialog-close]="true" (click)="submitEdits()">Save Changes</button>
+</mat-dialog-actions>

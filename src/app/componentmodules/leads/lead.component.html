@@ -1,0 +1,151 @@
+<mat-dialog-content>
+	<div id="leadPageHeader" class="row">
+		<div id="leadTitle">
+			<p><b>{{lead.firstName}} {{lead.lastName}}</b></p>
+			<p><b>Lead ID:</b> {{insuranceLead.id}}</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-3">
+			<mat-card class="edit-card">
+				<mat-card-content class="content-detail">
+					<div class="col-12">
+						<button mat-raised-button color="primary" (click)="editLead()">
+							<mat-icon>edit</mat-icon><span>Edit Lead</span>
+						</button>
+						<button mat-raised-button color="primary" (click)="deleteLead()">
+							<mat-icon>delete</mat-icon><span>Delete Lead</span>
+						</button>
+					</div>
+					<div class="col-12" style="margin-top: 15px;">
+						<button *ngIf="insuranceLead.leadStatusId === '?'" mat-raised-button class="lead-status-unknown" (click)="editLeadStatus()">
+							<mat-icon>help</mat-icon><span>Unknown</span>
+						</button>
+						<button *ngIf="insuranceLead.leadStatusId === 'Futures'" mat-raised-button class="lead-status-futures" (click)="editLeadStatus()">
+							<mat-icon>calendar_today</mat-icon><span>Futures</span>
+						</button>
+						<button *ngIf="insuranceLead.leadStatusId === 'Cold'" mat-raised-button class="lead-status-cold" (click)="editLeadStatus()">
+							<mat-icon>ac_unit</mat-icon><span>Cold</span>
+						</button>
+						<button *ngIf="insuranceLead.leadStatusId === 'Warm'" mat-raised-button class="lead-status-warm" (click)="editLeadStatus()">
+							<mat-icon>hot_tub</mat-icon><span>Warm</span>
+						</button>
+						<button *ngIf="insuranceLead.leadStatusId === 'Hot'" mat-raised-button class="lead-status-hot" (click)="editLeadStatus()">
+							<mat-icon>whatshot</mat-icon><span>Hot</span>
+						</button>
+						<button *ngIf="insuranceLead.leadStatusId === 'Sold'" mat-raised-button class="lead-status-sold" (click)="editLeadStatus()">
+							<mat-icon>attach_money</mat-icon><span>Sold</span>
+						</button>
+					</div>
+					<div *ngIf="insuranceLead.deleted" class="col-12" style="margin-top: 15px;">
+						<div class="alert alert-danger">
+							<h6>Lead has been marked 'DELETED'</h6>
+							<h6>Reason: {{ insuranceLead.deadLeadReasonId }}</h6>
+						</div>
+
+					</div>
+				</mat-card-content>
+			</mat-card>
+			<mat-card *ngIf="insuranceLead.leadStatusId === 'Hot'" class="phone-card">
+				<mat-card-content class="content-detail">
+					<p><b>Estimated Policy Close Date:</b><span>{{ insuranceLead.estClosingDate | shortDate }}</span></p>
+					<p><b>Estimated Policy Value:</b><span>{{ insuranceLead.estClosingValue | currency }}</span></p>
+					<p><b>Assigned User/Sales Agent:</b><span>{{ insuranceLead.userId }}</span></p>
+					<p><b>Last Contact:</b><span>{{ insuranceLead.lastContactDate | shortDate }}</span></p>
+					<p><b>Lead Source:</b><span>{{ insuranceLead.leadSourceId }}</span></p>
+				</mat-card-content>
+			</mat-card>
+			<mat-card class="lead-details1-card">
+				<mat-card-header class="card-header">
+					<mat-card-title><mat-icon>list_alt</mat-icon><span>Lead Details</span></mat-card-title>
+				</mat-card-header>
+				<mat-card-content class="content-detail">
+					<p><b>State:</b><span>{{ insuranceLead.stateId }}</span></p>
+					<p><b>County:</b><span>{{ insuranceLead.countyName }}</span></p>
+					<p><b>ZIP Code:</b><span>{{ insuranceLead.zipCode }}</span></p>
+					<p><b>Referral:</b><span>{{ insuranceLead.referralId }}</span></p>
+					<p><b>co-Applicant:</b><span>{{ insuranceLead.coApplicantFirstName}} {{ insuranceLead.coApplicantLastName }}</span></p>
+					<p><b>co-Applicant DOB:</b><span>{{ insuranceLead.coApplicantDateOfBirth | shortDate }}</span></p>
+					<p><b>Purchase amount:</b><span>{{ insuranceLead.purchaseAmount | currency }}</span></p>
+					<p><b>Purchase date:</b><span>{{ insuranceLead.purchaseDate | shortDate }}</span></p>
+					<p><b>Home financed:</b><span>{{ insuranceLead.homeFinanced }}</span></p>
+					<p><b>Previous insurance company:</b><span>{{ insuranceLead.prevInsuranceCompanyName }}</span></p>
+					<p><b>Previous policy expiration date:</b><span>{{ insuranceLead.prevPolicyExpirationDate | shortDate }}</span></p>
+					<p><b>Any claims in last five years:</b><span>{{ insuranceLead.anyClaimsPrevFiveYears }}</span></p>
+					<p><b>Estimated policy start date:</b><span>{{ insuranceLead.estPolicyStartDate | shortDate }}</span></p>
+					<p><b>Estimated home value:</b><span>{{ insuranceLead.estHomeValue | currency }}</span></p>
+					<p><b>Estimated value of home contents:</b><span>{{ insuranceLead.estHomeContentsValue | currency }}</span></p>
+					<p><b>Personal items insured:</b><span>{{ insuranceLead.insurePersonalItems }}</span></p>
+				</mat-card-content>
+			</mat-card>
+			<mat-card class="lead-details2-card">
+				<mat-card-header class="card-header">
+					<mat-card-title><mat-icon>home</mat-icon><span>Property Details</span></mat-card-title>
+				</mat-card-header>
+				<mat-card-content class="content-detail">
+					<p><b>Dimensions:</b><span>{{ insuranceLead.width }} ft. by {{ insuranceLead.length }} ft. ({{ insuranceLead.sqFeet }} sq. ft.)</span></p>
+					<p><b>Year manufactured:</b><span>{{ insuranceLead.yearHomeManufactured }}</span></p>
+					<p><b>Make:</b><span>{{ insuranceLead.make }}</span></p>
+					<p><b>Model:</b><span>{{ insuranceLead.model }}</span></p>
+					<p><b>Serial number:</b><span>{{ insuranceLead.serialNumber }}</span></p>
+					<p><b>Home type:</b><span>{{ insuranceLead.homeTypeId }}</span></p>
+					<p><b>Siding type:</b><span>{{ insuranceLead.sidingTypeId }}</span></p>
+					<p><b>Roof type:</b><span>{{ insuranceLead.roofTypeId }}</span></p>
+					<p><b>Animals present:</b><span>{{ insuranceLead.animalsPresent }}</span></p>
+					<p><b>Pool or trampoline:</b><span>{{ insuranceLead.poolOrTrampoline }}</span></p>
+					<p><b>Wood stove or fireplace:</b><span>{{ insuranceLead.woodStoveOrFireplace }}</span></p>
+					<p><b>Attached structures present:</b><span>{{ insuranceLead.attachedStructuresPresent }}</span></p>
+					<p><b>Fully skirted:</b><span>{{ insuranceLead.fullySkirted }}</span></p>
+					<p><b>Tied down:</b><span>{{ insuranceLead.tiedDown }}</span></p>
+					<p><b>More than 25 spaces in park:</b><span>{{ insuranceLead.moreThanTwentyFiveSpacesInPark }}</span></p>
+					<p><b>Within incorporated city limits:</b><span>{{ insuranceLead.withinIncorporatedCityLimits }}</span></p>
+					<p><b>Community park:</b><span>{{ insuranceLead.communityPark }}</span></p>
+				</mat-card-content>
+			</mat-card>
+			<mat-card class="lead-details2-card">
+					<mat-card-header class="card-header">
+						<mat-card-title><mat-icon>home</mat-icon><span>Other</span></mat-card-title>
+					</mat-card-header>
+					<mat-card-content class="content-detail">
+						<label>Limits</label>
+						<p>{{ insuranceLead.limits }}</p>
+					</mat-card-content>
+					<mat-card-content class="content-detail">
+						<label>Note</label>
+						<p>{{ insuranceLead.note }}</p>
+					</mat-card-content>
+				</mat-card>
+		</div>
+		<div class="col-9">
+			<mat-tab-group>
+				<mat-tab label="View Customer">
+					<app-customerdetail *ngIf="lead" [lead]="lead"></app-customerdetail>
+				</mat-tab>
+				<mat-tab label="Notes/Activities">
+					<app-notesandactivities *ngIf="lead" [lead]="lead"></app-notesandactivities>
+				</mat-tab>
+				<mat-tab label="Employee Quote Form">
+					<app-employeequoteform *ngIf="lead" [insuranceLead]="lead"></app-employeequoteform>
+				</mat-tab>
+				<mat-tab label="Emails">
+					<app-emailaddresscomponent *ngIf="lead" [lead]="lead"></app-emailaddresscomponent>
+				</mat-tab>
+				<mat-tab label="Reminders">
+					<app-remindercomponent *ngIf="lead" [lead]="lead"></app-remindercomponent>
+				</mat-tab>
+				<mat-tab label="Documents">
+					<app-leaddocuments *ngIf="lead" [lead]="lead"></app-leaddocuments>
+				</mat-tab>
+				<mat-tab label="Policy">
+					<app-policies *ngIf="lead" [lead]="lead"></app-policies>
+				</mat-tab>
+			</mat-tab-group>
+		</div>
+	</div>
+</mat-dialog-content>
+<mat-dialog-actions>
+	<button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>
+
+
+	

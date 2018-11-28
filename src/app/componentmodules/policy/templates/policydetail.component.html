@@ -1,0 +1,49 @@
+<mat-dialog-content>
+	<div id="pageHeader" class="row">
+		<div id="title">
+			<p><b>Policy Name:</b><span> {{ policy.policyName }}</span></p>
+			<div *ngIf="selectedCustomer">
+				<p><b>Customer:</b> {{ selectedCustomer.firstName }} {{ selectedCustomer.lastName }}</p>
+				<p><b>Customer ID:</b> {{ selectedCustomer.id }}</p>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-3">
+			<mat-card class="edit-card">
+				<mat-card-content class="content-detail">
+					<div class="col-12">
+						<button mat-raised-button color="primary" (click)="edit()">
+							<mat-icon>edit</mat-icon><span>Edit Policy</span>
+						</button>
+					</div>
+				</mat-card-content>
+			</mat-card>
+			<mat-card class="policy-details-card">
+				<mat-card-header class="card-header">
+					<mat-card-title><mat-icon>list_alt</mat-icon><span>Policy Details</span></mat-card-title>
+				</mat-card-header>
+				<mat-card-content class="content-detail">
+					<p><b>Policy Number:</b><span>{{ policy.policyNumber }}</span></p>
+					<p><b>Insurer:</b><span>{{ policy.insurerId }}</span></p>
+					<p><b>Effective Date:</b><span>{{ policy.effectiveDate | shortDate }}</span></p>
+					<p><b>Expiration Date:</b><span>{{ policy.expirationDate | shortDate }}</span></p>
+				</mat-card-content>
+			</mat-card>
+			<!--mat-card class="policy-details-card">
+				<mat-card-header class="card-header">
+					<mat-card-title><mat-icon>home</mat-icon><span>Customer Details</span></mat-card-title>
+				</mat-card-header>
+				<mat-card-content *ngIf="selectedCustomer" class="content-detail">
+					<p><b>ID:</b><span></span></p>
+				</mat-card-content>
+			</mat-card>-->
+		</div>
+		<div class="col-9">
+			<app-policydocuments [policy]="policy"></app-policydocuments>
+		</div>
+	</div>
+</mat-dialog-content>
+<mat-dialog-actions>
+		<button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>
